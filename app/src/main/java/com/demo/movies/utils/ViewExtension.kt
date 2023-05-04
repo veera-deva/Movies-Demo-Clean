@@ -6,7 +6,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
 
 inline fun Fragment.launchAndRepeatWithLifeCycle(
     lifecycleState: Lifecycle.State = Lifecycle.State.STARTED,

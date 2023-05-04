@@ -3,7 +3,6 @@ package com.demo.movies.utils
 import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import com.demo.movies.R
 
 object AlertDialogUtils {
 
