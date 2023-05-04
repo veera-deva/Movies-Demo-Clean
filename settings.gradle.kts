@@ -2,6 +2,7 @@ pluginManagement {
     plugins {
         id("org.jetbrains.kotlin.jvm") version "1.8.0"
         id("org.jetbrains.kotlin.android") version "1.8.0"
+        id("com.android.library") version "7.4.2"
     }
     repositories {
         google()
@@ -17,6 +18,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Movies-Clean-Demo"
-include(":presentation")
+include(":app")
 include(":domain")
 include(":data")
+include(":feature-module")

@@ -50,6 +50,8 @@ android {
 
 dependencies {
     implementation(project(ProjectModules.domain))
+    implementation(project(ProjectModules.featureModule))
+
     implementation(project(ProjectModules.data))
 
     /*AndroidX dependencies*/

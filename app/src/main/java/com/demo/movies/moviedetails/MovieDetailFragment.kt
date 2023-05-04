@@ -2,10 +2,9 @@ package com.demo.movies.moviedetails
 
 import android.content.Context
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.demo.domain.entity.MovieEntity
 import com.demo.movies.base.BaseFragment
 import com.demo.movies.databinding.FragmentMoviesDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,8 +15,19 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MovieDetailFragment :
     BaseFragment<FragmentMoviesDetailsBinding>(FragmentMoviesDetailsBinding::inflate) {
-    val args: MovieDetailFragmentArgs by navArgs()
+    private val args: MovieDetailFragmentArgs by navArgs()
 
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
+    }
 
     override fun setUpView() {
         getAndBindArgumentData()

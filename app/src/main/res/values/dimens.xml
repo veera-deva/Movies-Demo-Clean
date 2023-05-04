@@ -1,4 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="movie_list_card_margin">5dp</dimen>
+    <dimen name="item_movie_height">150dp</dimen>
 </resources>
