@@ -1,4 +1,4 @@
-package com.demo.data.model
+package com.demo.domain.model
 
 sealed interface NetworkResult<T : Any> {
     class Success<T : Any>(val data: T) : NetworkResult<T>

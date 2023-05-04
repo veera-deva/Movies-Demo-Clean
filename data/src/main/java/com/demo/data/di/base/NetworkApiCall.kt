@@ -1,6 +1,6 @@
-package com.demo.data.di
+package com.demo.data.di.base
 
-import com.demo.data.model.NetworkResult
+import com.demo.domain.model.NetworkResult
 import retrofit2.HttpException
 import retrofit2.Response
 

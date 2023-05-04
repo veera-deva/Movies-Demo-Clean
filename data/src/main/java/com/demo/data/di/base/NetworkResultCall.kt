@@ -1,6 +1,6 @@
-package com.demo.data.di
+package com.demo.data.di.base
 
-import com.demo.data.model.NetworkResult
+import com.demo.domain.model.NetworkResult
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Callback

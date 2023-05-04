@@ -1,6 +1,6 @@
 package com.demo.data.repository.movies
 
-import com.demo.data.model.NetworkResult
+import com.demo.domain.model.NetworkResult
 import com.demo.domain.entity.MovieEntity
 import com.demo.domain.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers

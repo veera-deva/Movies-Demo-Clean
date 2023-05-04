@@ -11,12 +11,12 @@
         android:layout_width="240dp"
         android:layout_height="240dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/space_icon" />
+        app:srcCompat="@drawable/ic_logo" />
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_gravity="center"
         android:visibility="gone" />
 

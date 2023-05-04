@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             bind:loadImage="@{movies.image}"
-            tools:src="@drawable/ic_koh" />
+            tools:src="@drawable/ic_movie_detail_preview" />
 
         <TextView
             android:id="@+id/title"

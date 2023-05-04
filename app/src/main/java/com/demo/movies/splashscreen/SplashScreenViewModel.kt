@@ -35,6 +35,6 @@ class SplashScreenViewModel : ViewModel() {
     }
 
     companion object {
-        const val SPLASH_TIME = 800L
+        const val SPLASH_TIME = 3000L
     }
 }

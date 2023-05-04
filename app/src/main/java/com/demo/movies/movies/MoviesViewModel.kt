@@ -1,9 +1,9 @@
 package com.demo.movies.movies
 
 import androidx.lifecycle.viewModelScope
-import com.demo.data.model.NetworkResult
+import com.demo.domain.model.NetworkResult
 import com.demo.domain.entity.MovieEntity
-import com.demo.domain.usecase.GetMoviesUseCaseImpl
+import com.demo.domain.usecase.GetMoviesUseCase
 import com.demo.movies.base.BaseViewModel
 import com.demo.movies.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class MoviesViewModel @Inject constructor(private val moviesUseCase: GetMoviesUseCaseImpl) :
+class MoviesViewModel @Inject constructor(private val moviesUseCase: GetMoviesUseCase) :
     BaseViewModel() {
 
 

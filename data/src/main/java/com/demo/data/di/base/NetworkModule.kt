@@ -1,12 +1,7 @@
-package com.demo.data.di
+package com.demo.data.di.base
 
 import com.demo.data.BuildConfig
 import com.demo.data.api.MovieApi
-import com.demo.data.repository.movies.MovieDataSource
-import com.demo.data.repository.movies.MovieRemoteDataSource
-import com.demo.data.repository.movies.MovieRepositoryImpl
-import com.demo.domain.repository.MovieRepository
-import com.demo.domain.usecase.GetMoviesUseCaseImpl
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -49,9 +44,6 @@ object NetworkModule {
             readTimeout(RETROFIT_TIMEOUT, TimeUnit.SECONDS)
             writeTimeout(RETROFIT_TIMEOUT, TimeUnit.SECONDS)
         }.build()
-    /* OkHttpClient.Builder()
-         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
-         .build()*/
 
 
     @Provides
@@ -70,19 +62,4 @@ object NetworkModule {
         return retrofit.create(MovieApi::class.java)
     }
 
-
-    @Provides
-    @Singleton
-    fun provideMovieUseCaseImpl(movieRepository: MovieRepository) =
-        GetMoviesUseCaseImpl(movieRepository)
-
-    @Provides
-    @Singleton
-    fun providesMovieRepository(movieDataSource: MovieDataSource) =
-        MovieRepositoryImpl(movieDataSource)
-
-
-    @Provides
-    @Singleton
-    fun providesMovieDataSource(movieApi: MovieApi) = MovieRemoteDataSource(movieApi)
 }
