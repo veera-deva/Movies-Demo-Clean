@@ -68,7 +68,6 @@ dependencies {
 
     /*Android HILT dependencies*/
     implementation(Dependencies.Hilt.hiltAndroid)
-    testImplementation("junit:junit:4.12")
     kapt(Dependencies.Hilt.kaptHiltAndroidCompiler)
 
     //Glide for image rendering

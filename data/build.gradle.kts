@@ -53,7 +53,6 @@ dependencies {
     /*Testing dependencies*/
 
     testImplementation(deps.TestDependencies.JUnit.junit)
-//    androidTestImplementation(deps.TestDependencies.AndroidX.junit)
 
     /*Coroutines test dependencies*/
     testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
@@ -61,7 +60,6 @@ dependencies {
     /*Mockito dependencies*/
     testImplementation(deps.TestDependencies.mockito.mockitoCore)
     testImplementation(deps.TestDependencies.mockito.mockitoInline)
-//    androidTestImplementation(deps.TestDependencies.mockito.mockitoAndroid)
 
     /*Turbine library to test kotlin flows */
     testImplementation(deps.TestDependencies.turbine)

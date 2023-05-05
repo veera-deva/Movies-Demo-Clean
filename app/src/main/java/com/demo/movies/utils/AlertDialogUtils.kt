@@ -37,8 +37,4 @@ object AlertDialogUtils {
         }
         builder.show()
     }
-
-    fun showGeneralErrorMessage(context: Context) {
-        showAlertDialog(context, positiveButton = "Okay")
-    }
 }
