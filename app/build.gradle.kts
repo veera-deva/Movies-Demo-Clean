@@ -68,6 +68,7 @@ dependencies {
 
     /*Android HILT dependencies*/
     implementation(Dependencies.Hilt.hiltAndroid)
+    testImplementation("junit:junit:4.12")
     kapt(Dependencies.Hilt.kaptHiltAndroidCompiler)
 
     //Glide for image rendering
@@ -83,6 +84,13 @@ dependencies {
     androidTestImplementation(TestDependencies.Hilt.androidTesting)
     kaptAndroidTest(TestDependencies.Hilt.androidCompiler)
     androidTestAnnotationProcessor(TestDependencies.Hilt.androidCompiler)
+
+    /*Coroutines test dependencies*/
+    testImplementation(TestDependencies.kotlinxCoroutinesTest)
+    testImplementation(TestDependencies.mockito.mockitoCore)
+    testImplementation(TestDependencies.mockito.mockitoInline)
+    androidTestImplementation(TestDependencies.mockito.mockitoAndroid)
+    testImplementation(TestDependencies.turbine)
 
 
 }

@@ -1,5 +1,3 @@
-import deps.ProjectModules
-
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -36,8 +34,24 @@ android {
 }
 
 dependencies {
-    
+
     /*DI Hilt*/
     api(deps.Dependencies.Hilt.hiltAndroid)
     kapt(deps.Dependencies.Hilt.kaptHiltAndroidCompiler)
+
+    /*Testing dependencies*/
+
+    testImplementation(deps.TestDependencies.JUnit.junit)
+    androidTestImplementation(deps.TestDependencies.AndroidX.junit)
+
+    /*Coroutines test dependencies*/
+    testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
+
+    /*Mockito dependencies*/
+    testImplementation(deps.TestDependencies.mockito.mockitoCore)
+    testImplementation(deps.TestDependencies.mockito.mockitoInline)
+    androidTestImplementation(deps.TestDependencies.mockito.mockitoAndroid)
+
+    /*Turbine library to test kotlin flows */
+    testImplementation(deps.TestDependencies.turbine)
 }

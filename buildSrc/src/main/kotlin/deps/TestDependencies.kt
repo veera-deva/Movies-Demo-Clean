@@ -30,7 +30,21 @@ object TestDependencies {
 
     }
 
-    val kotlinxCoroutines by lazy {
+    val turbine by lazy { "app.cash.turbine:turbine:${Versions.turbine}" }
+
+    object mockito {
+        val mockitoCore by lazy {
+            "org.mockito:mockito-core:${Versions.mockito}"
+        }
+        val mockitoAndroid by lazy {
+            "org.mockito:mockito-android:${Versions.mockitoAndroid}"
+        }
+        val mockitoInline by lazy {
+            "org.mockito:mockito-inline:${Versions.mockitoInline}"
+        }
+    }
+
+    val kotlinxCoroutinesTest by lazy {
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.testKotlinCoroutines}"
     }
 

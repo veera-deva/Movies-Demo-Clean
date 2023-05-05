@@ -14,5 +14,6 @@ class MovieRemoteDataSource @Inject constructor(private val movieApi: MovieApi) 
         NetworkResult.Success(result.map { it.toDomain() })
     } catch (e: Exception) {
         NetworkResult.Failure(e)
+
     }
 }

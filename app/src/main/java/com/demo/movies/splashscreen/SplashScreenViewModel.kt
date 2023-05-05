@@ -26,7 +26,7 @@ class SplashScreenViewModel : ViewModel() {
     }
 
     /*Method to show splashscreen for few milliseconds*/
-    private fun load(timeMillis: Long = SPLASH_TIME) {
+    fun load(timeMillis: Long = SPLASH_TIME) {
         viewModelScope.launch {
             delay(timeMillis = timeMillis)
             _state.update { SplashScreenUiState.Success }

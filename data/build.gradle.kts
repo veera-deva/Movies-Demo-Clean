@@ -49,7 +49,21 @@ dependencies {
     implementation(deps.Dependencies.Network.retrofit)
     implementation(deps.Dependencies.Network.retrofitMoshiConvertor)
     implementation(deps.Dependencies.Network.okhttpLoggingInterceptor)
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    /*Testing dependencies*/
+
+    testImplementation(deps.TestDependencies.JUnit.junit)
+//    androidTestImplementation(deps.TestDependencies.AndroidX.junit)
+
+    /*Coroutines test dependencies*/
+    testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
+
+    /*Mockito dependencies*/
+    testImplementation(deps.TestDependencies.mockito.mockitoCore)
+    testImplementation(deps.TestDependencies.mockito.mockitoInline)
+//    androidTestImplementation(deps.TestDependencies.mockito.mockitoAndroid)
+
+    /*Turbine library to test kotlin flows */
+    testImplementation(deps.TestDependencies.turbine)
+
 }

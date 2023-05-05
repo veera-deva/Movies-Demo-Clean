@@ -30,7 +30,7 @@ object Versions {
 
 
     const val testCore = "2.1.0"
-    const val testKotlinCoroutines = "1.8.0"
+    const val testKotlinCoroutines = "1.6.0"
     const val testJunit = "4.13.2"
     const val androidTestJunit = "1.1.5"
     const val androidTestEspressoCore = "3.5.1"
@@ -44,6 +44,11 @@ object Versions {
     const val coreTesting = "2.1.0"
     const val livedataTesting = "1.1.1"
     const val mockWebServer = "4.9.0"
+    const val mockito = "3.11.0"
+    const val mockitoAndroid = "3.3.3"
+    const val mockitoInline = "3.10.0"
+    const val googleTruth = "1.1"
+    const val turbine = "0.12.1"
 
 
 }

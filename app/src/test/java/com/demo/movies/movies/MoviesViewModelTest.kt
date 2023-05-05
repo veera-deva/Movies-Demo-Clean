@@ -1,0 +1,100 @@
+package com.demo.movies.movies
+
+import app.cash.turbine.test
+import com.demo.domain.entity.MovieEntity
+import com.demo.domain.model.NetworkResult
+import com.demo.domain.usecase.MovieUseCase
+import com.demo.movies.base.TestCoroutineRule
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.*
+
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito
+import org.mockito.junit.MockitoJUnitRunner
+import java.lang.Exception
+
+@ExperimentalCoroutinesApi
+@RunWith(MockitoJUnitRunner::class)
+class MoviesViewModelTest {
+
+    private lateinit var testObject: MoviesViewModel
+
+    @Mock
+    private lateinit var movieUseCase: MovieUseCase
+
+    @get:Rule
+    var testCoroutineRUle = TestCoroutineRule()
+
+    @Before
+    fun setUp() {
+        testObject = MoviesViewModel(movieUseCase)
+    }
+
+    @Test
+    fun `onMoviesViewModel init validate is loading`() {
+        assertEquals(MoviesViewModel.UiState.Loading, testObject.moviesUiState.value)
+    }
+
+    @Test
+    fun `onMoviesViewModel getMovies() returns list of movies`() =
+        runTest {
+            val movieList = mockedMovieList()
+            testObject.moviesUiState.test {
+                val firstItem = awaitItem()
+                assertEquals(MoviesViewModel.UiState.Loading, firstItem)
+
+                Mockito.`when`(movieUseCase.invoke())
+                    .thenReturn(flow { emit(NetworkResult.Success(movieList)) })
+                val secondItem = awaitItem()
+                assertEquals(MoviesViewModel.UiState.Success(movieList), secondItem)
+            }
+        }
+
+
+    @Test
+    fun `onMoviesViewModel init validate movies list data is empty`() {
+        runTest {
+            val movieList = emptyList<MovieEntity>()
+            testObject.moviesUiState.test {
+                val firstItem = awaitItem()
+                assertEquals(MoviesViewModel.UiState.Loading, firstItem)
+
+                Mockito.`when`(movieUseCase.invoke())
+                    .thenReturn(flow { emit(NetworkResult.Success(movieList)) })
+                val secondItem = awaitItem()
+                assertEquals(MoviesViewModel.UiState.Success(movieList), secondItem)
+            }
+        }
+    }
+
+    @Test
+    fun `onMoviesViewModel init validate getMovies return error`() {
+        runTest {
+            val movieList = emptyList<MovieEntity>()
+            testObject.moviesUiState.test {
+                val firstItem = awaitItem()
+                assertEquals(MoviesViewModel.UiState.Loading, firstItem)
+                Mockito.`when`(movieUseCase.invoke())
+                    .thenReturn(flow { emit(NetworkResult.Failure(Exception("Network Error"))) })
+                val secondItem = awaitItem()
+                assertEquals(MoviesViewModel.UiState.Error("Network Error"), secondItem)
+            }
+        }
+    }
+
+
+    private fun mockedMovieList() = listOf(
+        MovieEntity(
+            1,
+            "Mock title",
+            "Mock Description",
+            "mockUrl", "mockCategory"
+        )
+    )
+}
