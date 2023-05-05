@@ -14,7 +14,7 @@ This application follows clean architecture multi module approach to have unidir
   * data
   * feauture-model (not used)
 * MVVM architecture pattern
-* BuildSrc: For centralized dependency management (Drawback: Whenever there is a change in library version, whole project will rebuild. This is a drawback in project which uses many feauture modules)
+* BuildSrc: Directory for centralized dependency management (Drawback: Whenever there is a change in library version, whole project will rebuild. This is a drawback in project which uses many feauture modules)
 
 ### Library used
   * Kotlin
