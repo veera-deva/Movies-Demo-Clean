@@ -32,7 +32,7 @@ This application follows clean architecture multi module approach to have unidir
   * OkHttp - HTTP client that's efficient by default: HTTP/2 support allows all requests to the same host to share a socket
   * Moshi - Used to convert Java Objects into their JSON representation and vice versa.
   * Glide - Glide is a fast and efficient image loading library for Android 
-  * [Turbine](https://github.com/cashapp/turbine)
+  * [Turbine](https://github.com/cashapp/turbine) - library offers a convenient API for creating a collecting coroutine, as well as other convenience features for     testing Flows
 
 
 
