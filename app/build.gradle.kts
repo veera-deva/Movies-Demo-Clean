@@ -9,6 +9,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id("org.sonarqube")
 }
 
 android {
@@ -50,16 +51,16 @@ android {
 
 dependencies {
     implementation(project(ProjectModules.domain))
-    implementation(project(ProjectModules.featureModule))
-
-    implementation(project(ProjectModules.data))
+    implementation(project(ProjectModules.commonUi))
+    implementation(project(ProjectModules.featureMovies))
 
     /*AndroidX dependencies*/
     implementation(Dependencies.AndroidX.coreKtx)
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.constrainLayout)
-    implementation(Dependencies.AndroidX.navigationFragment)
-    implementation(Dependencies.AndroidX.navigationUi)
+    api(Dependencies.AndroidX.navigationFragment)
+    api(Dependencies.AndroidX.navigationUi)
+    api(Dependencies.AndroidX.navigationFeaturesFragment)
 
     /*Coroutines*/
     implementation(Dependencies.Kotlin.coroutinesCore)
@@ -70,9 +71,6 @@ dependencies {
     implementation(Dependencies.Hilt.hiltAndroid)
     kapt(Dependencies.Hilt.kaptHiltAndroidCompiler)
 
-    //Glide for image rendering
-    implementation(Dependencies.glide)
-    kapt(Dependencies.glideCompiler)
 
     /*Android Core unit test dependencies*/
     testImplementation(TestDependencies.JUnit.junit)
@@ -90,6 +88,22 @@ dependencies {
     testImplementation(TestDependencies.mockito.mockitoInline)
     androidTestImplementation(TestDependencies.mockito.mockitoAndroid)
     testImplementation(TestDependencies.turbine)
-
-
+}
+sonarqube {
+    properties {
+        property("sonar.projectName", "Movies-Demo")
+        property("sonar.projectKey", "Movies-Demo")
+        property("sonar.host.url", "http://localhost:9000")
+        property("sonar.tests", { "src/test/java" })
+        property("sonar.test.inclusions", "**/*Test*/**")
+        property("sonar.sourceEncoding", "UTF-8")
+        property("sonar.sources", "src/main/java")
+        property("sonar.login", "admin")
+        property("sonar.password", "admin")
+        property(
+            "sonar.exclusions", "**/*Test*/**," + "*.json," + "**/*test*/**," +
+                    "**/.gradle/**," +
+                    "**/R.class"
+        )
+    }
 }

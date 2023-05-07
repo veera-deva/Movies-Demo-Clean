@@ -21,4 +21,5 @@ rootProject.name = "Movies-Clean-Demo"
 include(":app")
 include(":domain")
 include(":data")
-include(":feature-module")
+include(":feature-movies")
+include(":common-ui")

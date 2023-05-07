@@ -14,8 +14,6 @@ import deps.Versions.lifecycleLiveDataKtx
 import deps.Versions.lifecycleViewModelKtx
 import deps.Versions.materialVersion
 import deps.Versions.mockk
-import deps.Versions.navigationFragmentKtx
-import deps.Versions.navigationUIKtx
 import deps.Versions.okHttpLoggingInterceptorVersion
 import deps.Versions.okHttpVersion
 import deps.Versions.retrofitGsonConvertorVersion
@@ -34,9 +32,12 @@ object Dependencies {
             "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}"
         }
         val navigationFragment by lazy {
-            "androidx.navigation:navigation-fragment-ktx:${navigationFragmentKtx}"
+            "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
         }
-        val navigationUi by lazy { "androidx.navigation:navigation-ui-ktx:${navigationUIKtx}" }
+        val navigationFeaturesFragment by lazy {
+            "androidx.navigation:navigation-dynamic-features-fragment:${Versions.navigationVersion}"
+        }
+        val navigationUi by lazy { "androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}" }
         val activityKTX by lazy { "androidx.activity:activity-ktx:${activityKtxVersion}" }
         val lifecycleExt by lazy { "androidx.lifecycle:lifecycle-extensions:${lifecycleExtension}" }
         val lifecycleLiveData by lazy {
@@ -95,6 +96,7 @@ object Dependencies {
         val unitTestingMockk by lazy { "io.mockk:mockk:${mockk}" }
 
     }
+
     //Glide for image rendering
     val glide by lazy { "com.github.bumptech.glide:glide:${Versions.glideVersion}" }
     val glideCompiler by lazy { "com.github.bumptech.glide:compiler:${Versions.glideVersion}" }

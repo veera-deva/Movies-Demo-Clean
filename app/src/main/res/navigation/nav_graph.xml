@@ -5,6 +5,8 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/SplashFragment">
 
+    <include app:graph="@navigation/nav_movies" />
+
     <fragment
         android:id="@+id/SplashFragment"
         android:name="com.demo.movies.splashscreen.SplashScreenFragment"
@@ -13,28 +15,10 @@
 
         <action
             android:id="@+id/action_splashfragmnet_to_moviesFragment"
-            app:destination="@+id/MoviesFragment"
+            app:destination="@id/nav_movies"
             app:popUpTo="@id/SplashFragment"
             app:popUpToInclusive="true" />
     </fragment>
 
-    <fragment
-        android:id="@+id/MoviesFragment"
-        android:name="com.demo.movies.movies.MoviesFragment"
-        android:label="@string/movies_fragment_label"
-        tools:layout="@layout/fragment_movies">
 
-        <action
-            android:id="@+id/action_movieFragment_to_movieDetailsFragment"
-            app:destination="@id/MovieDetailsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/MovieDetailsFragment"
-        android:name="com.demo.movies.moviedetails.MovieDetailFragment"
-        android:label="@string/movie_details_fragment_label"
-        tools:layout="@layout/fragment_movies_details">
-        <argument
-            android:name="movieData"
-            app:argType="com.demo.domain.entity.MovieEntity" />
-    </fragment>
 </navigation>
