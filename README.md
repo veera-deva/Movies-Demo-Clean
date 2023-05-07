@@ -9,10 +9,11 @@ Android Studio Flamingo | 2022.2.1, Written in kotlin
 
 This application follows clean architecture multi module approach to have unidirectional data flow, separation of concern, testability, readable and maintainable.
 * Modules
-  * app(Presentation),
+  * app,
   * domain
   * data
-  * feauture-model (not used)
+  * feauture-movies
+  * common-ui
 * MVVM architecture pattern
 * BuildSrc: Directory for centralized dependency management (Drawback: Whenever there is a change in library version, whole project will rebuild. This is a drawback in project which uses many feauture modules)
 
