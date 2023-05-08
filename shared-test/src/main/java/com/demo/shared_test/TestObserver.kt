@@ -1,4 +1,4 @@
-package com.demo.movies.base
+package com.demo.shared_test
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow

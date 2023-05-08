@@ -84,5 +84,6 @@ dependencies {
     testImplementation(deps.TestDependencies.mockito.mockitoInline)
     androidTestImplementation(deps.TestDependencies.mockito.mockitoAndroid)
     testImplementation(deps.TestDependencies.turbine)
+    testImplementation(project(deps.ProjectModules.sharedTest))
 
 }

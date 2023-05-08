@@ -4,7 +4,7 @@ import app.cash.turbine.test
 import com.demo.domain.entity.MovieEntity
 import com.demo.domain.model.NetworkResult
 import com.demo.domain.usecase.MovieUseCase
-import com.demo.movies.base.TestCoroutineRule
+import com.demo.shared_test.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
@@ -27,7 +27,7 @@ class MoviesViewModelTest {
     private lateinit var movieUseCase: MovieUseCase
 
     @get:Rule
-    var testCoroutineRUle = TestCoroutineRule()
+    var testCoroutineRUle = MainCoroutineRule()
 
     @Before
     fun setUp() {

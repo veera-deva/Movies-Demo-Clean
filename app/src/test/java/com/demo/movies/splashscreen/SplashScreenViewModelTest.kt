@@ -1,6 +1,6 @@
 package com.demo.movies.splashscreen
 
-import com.demo.movies.base.TestCoroutineRule
+import com.demo.shared_test.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -17,7 +17,7 @@ class SplashScreenViewModelTest {
     private lateinit var testObject: SplashScreenViewModel
 
     @get:Rule
-    var testCoroutineRUle = TestCoroutineRule()
+    var testCoroutineRUle = MainCoroutineRule()
 
     @Before
     fun setUp() {

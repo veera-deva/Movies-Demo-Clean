@@ -88,6 +88,7 @@ dependencies {
     testImplementation(TestDependencies.mockito.mockitoInline)
     androidTestImplementation(TestDependencies.mockito.mockitoAndroid)
     testImplementation(TestDependencies.turbine)
+    testImplementation(project(ProjectModules.sharedTest))
 }
 sonarqube {
     properties {
