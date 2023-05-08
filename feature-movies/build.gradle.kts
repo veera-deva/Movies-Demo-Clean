@@ -80,9 +80,9 @@ dependencies {
 
     /*Coroutines test dependencies*/
     testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
-    testImplementation(deps.TestDependencies.mockito.mockitoCore)
-    testImplementation(deps.TestDependencies.mockito.mockitoInline)
-    androidTestImplementation(deps.TestDependencies.mockito.mockitoAndroid)
+    testImplementation(deps.TestDependencies.Mockito.mockitoCore)
+    testImplementation(deps.TestDependencies.Mockito.mockitoInline)
+    androidTestImplementation(deps.TestDependencies.Mockito.mockitoAndroid)
     testImplementation(deps.TestDependencies.turbine)
     testImplementation(project(deps.ProjectModules.sharedTest))
 

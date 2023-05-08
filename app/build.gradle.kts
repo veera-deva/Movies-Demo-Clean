@@ -58,6 +58,7 @@ dependencies {
     implementation(Dependencies.AndroidX.coreKtx)
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.constrainLayout)
+
     api(Dependencies.AndroidX.navigationFragment)
     api(Dependencies.AndroidX.navigationUi)
     api(Dependencies.AndroidX.navigationFeaturesFragment)
@@ -84,9 +85,9 @@ dependencies {
 
     /*Coroutines test dependencies*/
     testImplementation(TestDependencies.kotlinxCoroutinesTest)
-    testImplementation(TestDependencies.mockito.mockitoCore)
-    testImplementation(TestDependencies.mockito.mockitoInline)
-    androidTestImplementation(TestDependencies.mockito.mockitoAndroid)
+    testImplementation(TestDependencies.Mockito.mockitoCore)
+    testImplementation(TestDependencies.Mockito.mockitoInline)
+    androidTestImplementation(TestDependencies.Mockito.mockitoAndroid)
     testImplementation(TestDependencies.turbine)
     testImplementation(project(ProjectModules.sharedTest))
 }

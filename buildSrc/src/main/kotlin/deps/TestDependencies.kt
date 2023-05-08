@@ -32,7 +32,7 @@ object TestDependencies {
 
     val turbine by lazy { "app.cash.turbine:turbine:${Versions.turbine}" }
 
-    object mockito {
+    object Mockito {
         val mockitoCore by lazy {
             "org.mockito:mockito-core:${Versions.mockito}"
         }
@@ -55,10 +55,6 @@ object TestDependencies {
         val junitPlatformRunner by lazy {
             "org.junit.platform:junit-platform-runner:${Versions.junitPlatformRunner}"
         }
-    }
-
-    val livedataTesting by lazy {
-        "com.jraska.livedata:testing-ktx:${Versions.livedataTesting}"
     }
 
     object Mockk {

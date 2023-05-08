@@ -53,9 +53,9 @@ dependencies {
 
     /*Coroutines test dependencies*/
     implementation(deps.TestDependencies.kotlinxCoroutinesTest)
-    implementation(deps.TestDependencies.mockito.mockitoCore)
-    implementation(deps.TestDependencies.mockito.mockitoInline)
-    implementation(deps.TestDependencies.mockito.mockitoAndroid)
+    implementation(deps.TestDependencies.Mockito.mockitoCore)
+    implementation(deps.TestDependencies.Mockito.mockitoInline)
+    implementation(deps.TestDependencies.Mockito.mockitoAndroid)
     implementation(deps.TestDependencies.turbine)
 
 }
