@@ -74,9 +74,9 @@ dependencies {
     androidTestImplementation(deps.TestDependencies.AndroidX.espressoCore)
 
     /*Hilt Testing dependencies*/
-    androidTestImplementation(deps.TestDependencies.Hilt.androidTesting)
-    kaptAndroidTest(deps.TestDependencies.Hilt.androidCompiler)
-    androidTestAnnotationProcessor(deps.TestDependencies.Hilt.androidCompiler)
+    androidTestImplementation(deps.TestDependencies.Hilt.hiltAndroidTesting)
+    kaptAndroidTest(deps.TestDependencies.Hilt.hiltAndroidCompiler)
+    androidTestAnnotationProcessor(deps.TestDependencies.Hilt.hiltAndroidCompiler)
 
     /*Coroutines test dependencies*/
     testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)

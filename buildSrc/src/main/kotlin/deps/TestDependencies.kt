@@ -27,6 +27,9 @@ object TestDependencies {
         val coreTesting by lazy {
             "androidx.arch.core:core-testing:${Versions.coreTesting}"
         }
+        val navigationTesting by lazy {
+            "androidx.navigation:navigation-testing:${Versions.navigationVersion}"
+        }
 
     }
 
@@ -63,10 +66,10 @@ object TestDependencies {
     }
 
     object Hilt {
-        val androidTesting by lazy {
+        val hiltAndroidTesting by lazy {
             "com.google.dagger:hilt-android-testing:${Versions.hiltTest}"
         }
-        val androidCompiler by lazy {
+        val hiltAndroidCompiler by lazy {
             "com.google.dagger:hilt-android-compiler:${Versions.hiltTest}"
         }
     }

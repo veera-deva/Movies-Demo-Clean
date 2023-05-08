@@ -47,9 +47,9 @@ dependencies {
     implementation(deps.TestDependencies.AndroidX.espressoCore)
 
     /*Hilt Testing dependencies*/
-    implementation(deps.TestDependencies.Hilt.androidTesting)
-    kaptAndroidTest(deps.TestDependencies.Hilt.androidCompiler)
-    implementation(deps.TestDependencies.Hilt.androidCompiler)
+    implementation(deps.TestDependencies.Hilt.hiltAndroidTesting)
+    kaptAndroidTest(deps.TestDependencies.Hilt.hiltAndroidCompiler)
+    implementation(deps.TestDependencies.Hilt.hiltAndroidCompiler)
 
     /*Coroutines test dependencies*/
     implementation(deps.TestDependencies.kotlinxCoroutinesTest)
