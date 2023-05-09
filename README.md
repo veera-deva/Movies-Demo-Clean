@@ -14,6 +14,7 @@ This application follows clean architecture multi module approach to have unidir
   * data - The data layer implements the repository that the domain layer defines. This layer provides single source of truth for data.(can only access domain module) 
   * feauture-movies - The feaure module contains all code related to movies features.
   * common-ui  - The common ui layer contains the base UI classes for other feature modules. 
+  * shared-test - The shared test layer contains the base or common testing classes. Feautue modules can be added as dependeny to access shared test code and shared-test module should be added as test implementation project in the feature modules.  
 * MVVM architecture pattern
 * BuildSrc: Directory for centralized dependency management (Drawback: Whenever there is a change in library version, whole project will rebuild. This is a drawback in project which uses many feauture modules). BuildSrc can be replaced with [Gradle version catalog](https://developer.android.com/build/migrate-to-catalogs)
 
