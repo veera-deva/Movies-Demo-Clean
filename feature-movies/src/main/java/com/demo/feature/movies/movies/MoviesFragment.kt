@@ -104,9 +104,9 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
 
     private val onMovieItemClicked: (movieEntity: MovieEntity, itemVIew: View) -> Unit =
         { movieEntity, _ ->
-            val bundleData =
+            val action =
                 MoviesFragmentDirections.actionMovieFragmentToMovieDetailsFragment(movieEntity)
-            findNavController().navigate(bundleData)
+            findNavController().navigate(action)
         }
 
 }

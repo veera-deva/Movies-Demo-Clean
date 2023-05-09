@@ -36,6 +36,7 @@ class MoviesViewModel @Inject constructor(private val moviesUseCase: MovieUseCas
     }
 
     fun getMovies() = viewModelScope.launch {
+        _moviesUiState.value = UiState.Loading
         moviesUseCase().collect { response ->
             when (response) {
                 is NetworkResult.Success -> {
