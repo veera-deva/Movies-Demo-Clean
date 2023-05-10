@@ -45,6 +45,7 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
     }
 
     override fun setUpView() {
+        subscribeUI()
         setUpRecyclerView()
         binding.btnRetry.setOnClickListener {
             moviesViewModel.getMovies()
@@ -66,7 +67,7 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
 
     }
 
-    override fun subscribeUI() {
+    private fun subscribeUI() {
 
         with(moviesViewModel) {
             launchAndRepeatWithLifeCycle {

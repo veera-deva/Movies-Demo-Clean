@@ -10,13 +10,13 @@ import com.demo.common_ui.utils.launchAndRepeatWithLifeCycle
 import kotlinx.coroutines.launch
 
 class SplashScreenFragment :
-    com.demo.common_ui.base.BaseFragment<FragmentSplashScreenBinding>(FragmentSplashScreenBinding::inflate) {
+    BaseFragment<FragmentSplashScreenBinding>(FragmentSplashScreenBinding::inflate) {
     private val splashViewModel by viewModels<SplashScreenViewModel>()
     override fun setUpView() {
-        /*un used*/
+        subscribeUI()
     }
 
-    override fun subscribeUI() {
+    private fun subscribeUI() {
         with(splashViewModel) {
             launchAndRepeatWithLifeCycle {
                 launch {

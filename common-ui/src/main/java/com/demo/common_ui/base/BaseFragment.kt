@@ -26,7 +26,7 @@ abstract class BaseFragment<T : ViewBinding>(private val inflateMethod: (LayoutI
         super.onViewCreated(view, savedInstanceState)
         setStatusBarColor()
         setUpView()
-        subscribeUI()
+
     }
 
     protected open fun setStatusBarColor() {
@@ -36,7 +36,6 @@ abstract class BaseFragment<T : ViewBinding>(private val inflateMethod: (LayoutI
     }
 
     abstract fun setUpView()
-    abstract fun subscribeUI()
 
     /**
      * Method to display error message to the user

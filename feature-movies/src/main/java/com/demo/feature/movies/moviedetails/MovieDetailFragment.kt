@@ -35,10 +35,5 @@ class MovieDetailFragment :
     private fun getAndBindArgumentData() {
         binding.movies = args.movieData
     }
-
-    override fun subscribeUI() {
-        /* un used*/
-    }
-
-
+    
 }

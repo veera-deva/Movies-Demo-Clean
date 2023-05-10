@@ -15,6 +15,7 @@ class SplashScreenViewModel : ViewModel() {
     private val _state = MutableStateFlow<SplashScreenUiState>(SplashScreenUiState.Loading)
     val state: StateFlow<SplashScreenUiState> = _state.asStateFlow()
 
+
     sealed interface SplashScreenUiState {
         object Loading : SplashScreenUiState
         object Success : SplashScreenUiState
