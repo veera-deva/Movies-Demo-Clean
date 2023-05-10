@@ -47,15 +47,22 @@ dependencies {
     implementation(deps.TestDependencies.AndroidX.espressoCore)
 
     /*Hilt Testing dependencies*/
-    implementation(deps.TestDependencies.Hilt.hiltAndroidTesting)
-    kaptAndroidTest(deps.TestDependencies.Hilt.hiltAndroidCompiler)
-    implementation(deps.TestDependencies.Hilt.hiltAndroidCompiler)
-
+    with(deps.TestDependencies.Hilt) {
+        implementation(hiltAndroidTesting)
+        kaptAndroidTest(hiltAndroidCompiler)
+        implementation(hiltAndroidCompiler)
+    }
     /*Coroutines test dependencies*/
     implementation(deps.TestDependencies.kotlinxCoroutinesTest)
-    implementation(deps.TestDependencies.Mockito.mockitoCore)
-    implementation(deps.TestDependencies.Mockito.mockitoInline)
-    implementation(deps.TestDependencies.Mockito.mockitoAndroid)
+
+    /*Mockito test dependencies*/
+    with(deps.TestDependencies.Mockito) {
+        implementation(mockitoCore)
+        implementation(mockitoInline)
+        implementation(mockitoAndroid)
+
+    }
+    /*Flow unit testing dependencies*/
     implementation(deps.TestDependencies.turbine)
 
 }

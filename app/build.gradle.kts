@@ -55,13 +55,15 @@ dependencies {
     implementation(project(ProjectModules.featureMovies))
 
     /*AndroidX dependencies*/
-    implementation(Dependencies.AndroidX.coreKtx)
-    implementation(Dependencies.AndroidX.appCompat)
-    implementation(Dependencies.AndroidX.constrainLayout)
+    with(Dependencies.AndroidX) {
+        implementation(coreKtx)
+        implementation(appCompat)
+        implementation(constrainLayout)
+        api(navigationFragment)
+        api(navigationUi)
+        api(navigationFeaturesFragment)
+    }
 
-    api(Dependencies.AndroidX.navigationFragment)
-    api(Dependencies.AndroidX.navigationUi)
-    api(Dependencies.AndroidX.navigationFeaturesFragment)
 
     /*Coroutines*/
     implementation(Dependencies.Kotlin.coroutinesCore)
@@ -69,43 +71,35 @@ dependencies {
     implementation(Dependencies.Google.material)
 
     /*Android HILT dependencies*/
-    implementation(Dependencies.Hilt.hiltAndroid)
-    kapt(Dependencies.Hilt.kaptHiltAndroidCompiler)
+    with(Dependencies.Hilt) {
+        implementation(hiltAndroid)
+        kapt(kaptHiltAndroidCompiler)
 
+    }
+    /*Hilt Testing dependencies*/
+    with(TestDependencies.Hilt) {
+        androidTestImplementation(hiltAndroidTesting)
+        kaptAndroidTest(hiltAndroidCompiler)
+        androidTestAnnotationProcessor(hiltAndroidCompiler)
+    }
 
     /*Android Core unit test dependencies*/
     testImplementation(TestDependencies.JUnit.junit)
     androidTestImplementation(TestDependencies.AndroidX.junit)
     androidTestImplementation(TestDependencies.AndroidX.espressoCore)
 
-    /*Hilt Testing dependencies*/
-    androidTestImplementation(TestDependencies.Hilt.hiltAndroidTesting)
-    kaptAndroidTest(TestDependencies.Hilt.hiltAndroidCompiler)
-    androidTestAnnotationProcessor(TestDependencies.Hilt.hiltAndroidCompiler)
+    /*Mockito test dependencies*/
+    with(TestDependencies.Mockito) {
+        testImplementation(mockitoCore)
+        testImplementation(mockitoInline)
+        androidTestImplementation(mockitoAndroid)
+    }
 
     /*Coroutines test dependencies*/
     testImplementation(TestDependencies.kotlinxCoroutinesTest)
-    testImplementation(TestDependencies.Mockito.mockitoCore)
-    testImplementation(TestDependencies.Mockito.mockitoInline)
-    androidTestImplementation(TestDependencies.Mockito.mockitoAndroid)
+
+    /*Turbine library to test kotlin flows */
     testImplementation(TestDependencies.turbine)
+
     testImplementation(project(ProjectModules.sharedTest))
-}
-sonarqube {
-    properties {
-        property("sonar.projectName", "Movies-Demo")
-        property("sonar.projectKey", "Movies-Demo")
-        property("sonar.host.url", "http://localhost:9000")
-        property("sonar.tests", { "src/test/java" })
-        property("sonar.test.inclusions", "**/*Test*/**")
-        property("sonar.sourceEncoding", "UTF-8")
-        property("sonar.sources", "src/main/java")
-        property("sonar.login", "admin")
-        property("sonar.password", "admin")
-        property(
-            "sonar.exclusions", "**/*Test*/**," + "*.json," + "**/*test*/**," +
-                    "**/.gradle/**," +
-                    "**/R.class"
-        )
-    }
 }

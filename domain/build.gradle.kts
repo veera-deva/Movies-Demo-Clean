@@ -48,9 +48,12 @@ dependencies {
     testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
 
     /*Mockito dependencies*/
-    testImplementation(deps.TestDependencies.Mockito.mockitoCore)
-    testImplementation(deps.TestDependencies.Mockito.mockitoInline)
-    androidTestImplementation(deps.TestDependencies.Mockito.mockitoAndroid)
+    with(deps.TestDependencies.Mockito) {
+        testImplementation(mockitoCore)
+        testImplementation(mockitoInline)
+        androidTestImplementation(mockitoAndroid)
+
+    }
 
     /*Turbine library to test kotlin flows */
     testImplementation(deps.TestDependencies.turbine)

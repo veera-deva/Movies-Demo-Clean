@@ -14,10 +14,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
+/**
+ * View model for MoviesFragment
+ * */
 @HiltViewModel
 class MoviesViewModel @Inject constructor(private val moviesUseCase: MovieUseCase) :
     BaseViewModel() {
 
+    /**
+     * Ui State for MoviesFragment
+     * */
     sealed interface UiState {
         object Loading : UiState
         data class Success(

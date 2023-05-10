@@ -1,3 +1,5 @@
+import deps.Dependencies
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -50,39 +52,57 @@ android {
 }
 
 dependencies {
-    implementation(project(deps.ProjectModules.commonUi))
-    implementation(project(deps.ProjectModules.data))
-    implementation(project(deps.ProjectModules.domain))
+
+    with(deps.ProjectModules) {
+        implementation(project(commonUi))
+        implementation(project(data))
+        implementation(project(domain))
+    }
 
 
     /*AndroidX dependencies*/
-    implementation(deps.Dependencies.AndroidX.coreKtx)
-    implementation(deps.Dependencies.AndroidX.appCompat)
-    implementation(deps.Dependencies.Google.material)
+    with(Dependencies.AndroidX) {
+        implementation(coreKtx)
+        implementation(appCompat)
+
+        /*Navigation dependencies*/
+        api(navigationFragment)
+        api(navigationUi)
+        api(navigationFeaturesFragment)
+    }
+
+    implementation(Dependencies.Google.material)
 
     /*Android HILT dependencies*/
-    implementation(deps.Dependencies.Hilt.hiltAndroid)
-    kapt(deps.Dependencies.Hilt.kaptHiltAndroidCompiler)
+    implementation(Dependencies.Hilt.hiltAndroid)
+    kapt(Dependencies.Hilt.kaptHiltAndroidCompiler)
 
-    api(deps.Dependencies.AndroidX.navigationFragment)
-    api(deps.Dependencies.AndroidX.navigationUi)
-    api(deps.Dependencies.AndroidX.navigationFeaturesFragment)
 
     /*Android Core unit test dependencies*/
-    testImplementation(deps.TestDependencies.JUnit.junit)
-    androidTestImplementation(deps.TestDependencies.AndroidX.junit)
-    androidTestImplementation(deps.TestDependencies.AndroidX.espressoCore)
+    with(deps.TestDependencies.AndroidX) {
+        testImplementation(deps.TestDependencies.JUnit.junit)
+        androidTestImplementation(junit)
+        androidTestImplementation(espressoCore)
+    }
 
     /*Hilt Testing dependencies*/
-    androidTestImplementation(deps.TestDependencies.Hilt.hiltAndroidTesting)
-    kaptAndroidTest(deps.TestDependencies.Hilt.hiltAndroidCompiler)
-    androidTestAnnotationProcessor(deps.TestDependencies.Hilt.hiltAndroidCompiler)
+    with(deps.TestDependencies.Hilt) {
+        androidTestImplementation(hiltAndroidTesting)
+        kaptAndroidTest(hiltAndroidCompiler)
+        androidTestAnnotationProcessor(hiltAndroidCompiler)
 
+    }
+    /*Mockito test dependencies*/
+    with(deps.TestDependencies.Mockito) {
+        testImplementation(mockitoCore)
+        testImplementation(mockitoInline)
+        androidTestImplementation(mockitoAndroid)
+
+    }
     /*Coroutines test dependencies*/
     testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
-    testImplementation(deps.TestDependencies.Mockito.mockitoCore)
-    testImplementation(deps.TestDependencies.Mockito.mockitoInline)
-    androidTestImplementation(deps.TestDependencies.Mockito.mockitoAndroid)
+
+    /*Flow unit testing dependencies*/
     testImplementation(deps.TestDependencies.turbine)
     testImplementation(project(deps.ProjectModules.sharedTest))
 

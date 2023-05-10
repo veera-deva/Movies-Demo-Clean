@@ -2,7 +2,6 @@ package com.demo.feature.movies.moviedetails
 
 import android.content.Context
 import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.demo.common_ui.base.BaseFragment
@@ -10,7 +9,7 @@ import com.demo.feature.movies.databinding.FragmentMoviesDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * A simple [Fragment] subclass as the second destination in the navigation.
+ * MovieDetailFragment to details of selected movies in movies fragment
  */
 @AndroidEntryPoint
 class MovieDetailFragment :
