@@ -1,4 +1,4 @@
-package com.demo.data.di.base
+package com.demo.data.api.base
 
 import com.demo.domain.model.NetworkResult
 import retrofit2.HttpException
