@@ -14,7 +14,6 @@ android {
     }
 }
 dependencies {
-
     /*Android HILT dependencies*/
     with(deps.Dependencies.Hilt) {
         implementation(hiltAndroid)

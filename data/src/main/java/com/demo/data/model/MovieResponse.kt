@@ -1,6 +1,5 @@
 package com.demo.data.model
 
-import com.demo.domain.entity.MovieEntity
 import com.squareup.moshi.Json
 
 data class MovieResponse(
@@ -16,8 +15,6 @@ data class MovieResponse(
     val category: String = ""
 )
 
-fun MovieResponse.toDomain() = MovieEntity(
-    id = id, image = image, title = title, description = description, category = category
-)
+
 
 

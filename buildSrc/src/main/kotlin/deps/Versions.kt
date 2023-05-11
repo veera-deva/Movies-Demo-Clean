@@ -25,12 +25,12 @@ object Versions {
     const val androidxJunit = "1.1.1"
     const val junit = "4.13.1"
     const val junitPlatformRunner = "1.0.2"
-    const val coreTesting = "2.1.0"
     const val mockWebServer = "4.9.0"
     const val mockito = "3.11.0"
     const val mockitoAndroid = "3.3.3"
     const val mockitoInline = "3.10.0"
     const val turbine = "0.12.1"
+    const val striktCore = "0.31.0"
 
 
 }

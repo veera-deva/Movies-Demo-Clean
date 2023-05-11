@@ -1,8 +1,6 @@
 package com.demo.data.repository.movies
 
-import com.demo.data.model.MovieResponse
-import com.demo.data.model.toDomain
-import com.demo.domain.entity.MovieEntity
+import com.demo.data.repository.utils.MockedTestData.mockedMovieResponse
 import com.demo.domain.model.NetworkResult
 import com.demo.domain.repository.MovieRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -38,23 +36,6 @@ class MovieRepositoryImplTest {
         val responseFlow = moviesRepository.getMovies().toList()
         assert(responseFlow.isNotEmpty())
     }
-
-    private fun mockedMovieResponse() = listOf<MovieEntity>(
-        MovieResponse
-            (
-            id = 1,
-            title = "Mock title 1",
-            description = "Mock Description 1",
-            image = "Mock url 1",
-            category = "Mock category 1"
-        ).toDomain(), MovieResponse(
-            id = 2,
-            title = "Mock title 2",
-            description = "Mock Description 2",
-            image = "Mock url 2",
-            category = "Mock category 2"
-        ).toDomain()
-    ).toList()
 
 
 }

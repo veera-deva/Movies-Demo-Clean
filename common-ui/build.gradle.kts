@@ -10,8 +10,6 @@ android {
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 33
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -47,18 +45,26 @@ android {
 }
 
 dependencies {
-/*AndroidX dependencies*/
-    implementation(deps.Dependencies.AndroidX.coreKtx)
-    implementation(deps.Dependencies.AndroidX.appCompat)
+
+    /*AndroidX dependencies*/
+    with(deps.Dependencies.AndroidX) {
+        implementation(coreKtx)
+        implementation(appCompat)
+    }
+
     /*Material design dependencies*/
     implementation(deps.Dependencies.Google.material)
 
     //Glide for image rendering
-    implementation(deps.Dependencies.glide)
-    kapt(deps.Dependencies.glideCompiler)
-
+    with(deps.Dependencies) {
+        implementation(glide)
+        kapt(glideCompiler)
+    }
     /*Android Core unit test dependencies*/
     testImplementation(deps.TestDependencies.JUnit.junit)
-    androidTestImplementation(deps.TestDependencies.AndroidX.junit)
-    androidTestImplementation(deps.TestDependencies.AndroidX.espressoCore)
+    with(deps.TestDependencies.AndroidX) {
+        androidTestImplementation(junit)
+        androidTestImplementation(espressoCore)
+    }
+
 }

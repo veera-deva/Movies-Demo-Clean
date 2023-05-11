@@ -18,22 +18,16 @@ object TestDependencies {
         val espressoCore by lazy {
             "androidx.test.espresso:espresso-core:${Versions.espresso}"
         }
-        val espressoContrib by lazy {
-            "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
-        }
+        
         val junit by lazy {
             "androidx.test.ext:junit:${Versions.androidxJunit}"
-        }
-        val coreTesting by lazy {
-            "androidx.arch.core:core-testing:${Versions.coreTesting}"
-        }
-        val navigationTesting by lazy {
-            "androidx.navigation:navigation-testing:${Versions.navigationVersion}"
         }
 
     }
 
     val turbine by lazy { "app.cash.turbine:turbine:${Versions.turbine}" }
+
+    val striktCore by lazy { "io.strikt:strikt-core:${Versions.striktCore}" }
 
     object Mockito {
         val mockitoCore by lazy {

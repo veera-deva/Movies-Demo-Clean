@@ -64,7 +64,6 @@ dependencies {
         api(navigationFeaturesFragment)
     }
 
-
     /*Coroutines*/
     implementation(Dependencies.Kotlin.coroutinesCore)
     /*Material design dependencies*/

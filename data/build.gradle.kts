@@ -38,30 +38,37 @@ dependencies {
     implementation(project(deps.ProjectModules.domain))
 
     /*Android HILT dependencies*/
-    implementation(deps.Dependencies.Hilt.hiltAndroid)
-    kapt(deps.Dependencies.Hilt.kaptHiltAndroidCompiler)
-
+    with(deps.Dependencies.Hilt) {
+        implementation(hiltAndroid)
+        kapt(kaptHiltAndroidCompiler)
+    }
     /*Kotlin coroutines*/
     implementation(deps.Dependencies.Kotlin.kotlinxCoroutines)
     implementation(deps.Dependencies.Kotlin.coroutinesCore)
 
     //*Retrofit*//*
-    implementation(deps.Dependencies.Network.retrofit)
-    implementation(deps.Dependencies.Network.retrofitMoshiConvertor)
-    implementation(deps.Dependencies.Network.okhttpLoggingInterceptor)
-
+    with(deps.Dependencies.Network) {
+        implementation(retrofit)
+        implementation(retrofitMoshiConvertor)
+        implementation(okhttpLoggingInterceptor)
+    }
     /*Testing dependencies*/
 
     testImplementation(deps.TestDependencies.JUnit.junit)
 
-    /*Coroutines test dependencies*/
-    testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
-
     /*Mockito dependencies*/
-    testImplementation(deps.TestDependencies.Mockito.mockitoCore)
-    testImplementation(deps.TestDependencies.Mockito.mockitoInline)
+    with(deps.TestDependencies.Mockito) {
+        testImplementation(mockitoCore)
+        testImplementation(mockitoInline)
+    }
+    with(deps.TestDependencies) {
+        /*Turbine library to test kotlin flows */
+        testImplementation(turbine)
+        testImplementation(striktCore)
 
-    /*Turbine library to test kotlin flows */
-    testImplementation(deps.TestDependencies.turbine)
+        /*Coroutines test dependencies*/
+        testImplementation(kotlinxCoroutinesTest)
+    }
+    implementation(kotlin("reflect"))
 
 }
