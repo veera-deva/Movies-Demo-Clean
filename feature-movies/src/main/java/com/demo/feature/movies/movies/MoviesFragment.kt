@@ -22,39 +22,16 @@ import kotlinx.coroutines.launch
 class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding::inflate) {
     private val moviesViewModel by viewModels<MoviesViewModel>()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                showAreYouSureDialog()
-
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
-    }
-
-    private fun showAreYouSureDialog() {
-        AlertDialogUtils.showAlertDialog(
-            requireContext(),
-            message = "Are you sure, you want to exit?",
-            positiveButton = "Yes",
-            negativeButton = "No", positiveOnClickListener = {
-                activity?.finish()
-            }
-        )
-    }
-
     override fun setUpView() {
         subscribeUI()
         setUpRecyclerView()
         binding.btnRetry.setOnClickListener {
             moviesViewModel.getMovies()
         }
-
     }
 
     private fun setUpRecyclerView() {
-        with(binding.rvMovies) {
+        binding.rvMovies.apply {
             layoutManager = GridLayoutManager(
                 requireContext(),
                 3,
@@ -64,42 +41,34 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(requireContext(), GridLayoutManager.VERTICAL))
         }
-
     }
 
     private fun subscribeUI() {
+        launchAndRepeatWithLifeCycle {
+            launch {
+                moviesViewModel.moviesUiState.collect { uiState ->
+                    when (uiState) {
+                        is MoviesUIState.Loading -> {
+                            showLoading()
+                        }
 
-        with(moviesViewModel) {
-            launchAndRepeatWithLifeCycle {
-                launch {
-                    moviesUiState.collect { uiState ->
-                        when (uiState) {
-                            is MoviesViewModel.UiState.Loading -> {
-                                binding.progressBar.visibility =
-                                    View.VISIBLE
-                            }
+                        is MoviesUIState.Success -> {
+                            hideLoading()
+                            binding.rvMovies.adapter =
+                                MoviesAdapter(
+                                    uiState.moviesList,
+                                    onMovieItemClicked = onMovieItemClicked
+                                )
+                        }
 
-                            is MoviesViewModel.UiState.Success -> {
-                                binding.progressBar.visibility =
-                                    View.GONE
-                                binding.rvMovies.adapter =
-                                    MoviesAdapter(
-                                        uiState.moviesList,
-                                        onMovieItemClicked = onMovieItemClicked
-                                    )
-                            }
-
-                            is MoviesViewModel.UiState.Error -> {
-                                binding.progressBar.visibility = View.GONE
-                                binding.llNoDataView.visibility = View.VISIBLE
-                            }
-
+                        is MoviesUIState.Error -> {
+                            hideLoading()
+                            binding.llNoDataView.visibility = View.VISIBLE
                         }
                     }
                 }
             }
         }
-
     }
 
     private val onMovieItemClicked: (movieEntity: MovieEntity, itemVIew: View) -> Unit =

@@ -16,16 +16,6 @@ class MoviesAdapter(
 ) :
     RecyclerView.Adapter<MoviesAdapter.MoviesHolder>() {
 
-    inner class MoviesHolder(private val binding: ItemMoviesBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(movieEntity: MovieEntity) {
-            binding.movies = movieEntity
-            binding.root.setOnClickListener {
-                onMovieItemClicked.invoke(movieEntity, it)
-            }
-        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesHolder {
         return MoviesHolder(
             ItemMoviesBinding.inflate(
@@ -42,6 +32,18 @@ class MoviesAdapter(
 
     override fun onBindViewHolder(holder: MoviesHolder, position: Int) {
         holder.bind(listData[position])
+    }
+
+    inner class MoviesHolder(private val binding: ItemMoviesBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(movieEntity: MovieEntity) {
+            with(binding) {
+                movies = movieEntity
+                root.setOnClickListener {
+                    onMovieItemClicked.invoke(movieEntity, it)
+                }
+            }
+        }
     }
 
 

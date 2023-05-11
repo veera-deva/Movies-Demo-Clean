@@ -1,24 +1,28 @@
 package com.demo.common_ui.base
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.demo.common_ui.utils.ProgressDialogUtil
 import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseFragment<T : ViewBinding>(private val inflateMethod: (LayoutInflater, ViewGroup?, Boolean) -> T) :
     Fragment() {
     private var _binding: T? = null
     val binding: T get() = _binding!!
-    private var snackbar: Snackbar? = null
+    private lateinit var dialog: Dialog
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = inflateMethod.invoke(inflater, container, false)
+        dialog = ProgressDialogUtil.setProgressDialog(requireContext())
         return binding.root
     }
 
@@ -38,34 +42,14 @@ abstract class BaseFragment<T : ViewBinding>(private val inflateMethod: (LayoutI
     abstract fun setUpView()
 
     /**
-     * Method to display error message to the user
+     * show progress dialog
      * */
-    fun showError(msg: String) {
-        view?.run {
-            snackbar = Snackbar.make(this, msg, Snackbar.LENGTH_INDEFINITE)
-            snackbar!!.setAction("Dismiss") {
-                snackbar!!.dismiss()
 
-            }
-            snackbar!!.show()
-        }
-    }
+    fun showLoading() = dialog.show()
 
     /**
-     * Method to display a message to the user  via SnackBar
+     * Hide progress dialog
      * */
-    fun showMessage(msg: String) {
-        view?.run {
-            hideError()
-            snackbar = Snackbar.make(this, msg, Snackbar.LENGTH_SHORT)
-            snackbar!!.show()
-        }
-    }
+    fun hideLoading() = dialog.dismiss()
 
-    /**
-     * Method to dismiss the displayed message
-     * */
-    private fun hideError() {
-        snackbar?.dismiss()
-    }
 }

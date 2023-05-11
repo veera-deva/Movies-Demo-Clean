@@ -21,43 +21,29 @@ import javax.inject.Inject
 class MoviesViewModel @Inject constructor(private val moviesUseCase: MovieUseCase) :
     BaseViewModel() {
 
-    /**
-     * Ui State for MoviesFragment
-     * */
-    sealed interface UiState {
-        object Loading : UiState
-        data class Success(
-            val moviesList: List<MovieEntity> = emptyList()
-        ) : UiState
-
-        data class Error(val errorMessage: String? = null) : UiState
-    }
-
-    private val _moviesUiState = MutableStateFlow<UiState>(UiState.Loading)
-    val moviesUiState: StateFlow<UiState> = _moviesUiState.asStateFlow()
-
+    private val _moviesUiState = MutableStateFlow<MoviesUIState>(MoviesUIState.Loading)
+    val moviesUiState: StateFlow<MoviesUIState> = _moviesUiState.asStateFlow()
 
     init {
         getMovies()
     }
 
     fun getMovies() = viewModelScope.launch {
-        _moviesUiState.value = UiState.Loading
+        _moviesUiState.value = MoviesUIState.Loading
         moviesUseCase().collect { response ->
             when (response) {
                 is NetworkResult.Success -> {
-                    _moviesUiState.value = UiState.Success(response.data)
+                    _moviesUiState.value = MoviesUIState.Success(response.data)
                 }
 
                 is NetworkResult.Failure -> {
-                    _moviesUiState.value = UiState.Error(response.e.message)
+                    _moviesUiState.value = MoviesUIState.Error(response.e.message)
                 }
 
                 else -> {
-                    _moviesUiState.value = UiState.Error(Constants.DEFAULT_ERROR_MESSAGE)
+                    _moviesUiState.value = MoviesUIState.Error(Constants.DEFAULT_ERROR_MESSAGE)
                 }
             }
         }
-
     }
 }

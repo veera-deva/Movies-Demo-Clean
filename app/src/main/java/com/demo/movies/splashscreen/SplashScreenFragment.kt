@@ -22,11 +22,11 @@ class SplashScreenFragment :
                 launch {
                     state.collect { uiState ->
                         when (uiState) {
-                            is SplashScreenViewModel.SplashScreenUiState.Loading -> {
-                                binding.progressBar.visibility = View.VISIBLE
+                            is SplashScreenUiState.Loading -> {
+                                showLoading()
                             }
 
-                            is SplashScreenViewModel.SplashScreenUiState.Success -> {
+                            is SplashScreenUiState.Success -> {
                                 findNavController().navigate(com.demo.feature.movies.R.id.nav_movies)
                             }
                         }
@@ -35,6 +35,4 @@ class SplashScreenFragment :
             }
         }
     }
-
-
 }

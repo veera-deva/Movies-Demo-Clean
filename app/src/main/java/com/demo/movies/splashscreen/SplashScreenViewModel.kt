@@ -15,19 +15,12 @@ class SplashScreenViewModel : ViewModel() {
     private val _state = MutableStateFlow<SplashScreenUiState>(SplashScreenUiState.Loading)
     val state: StateFlow<SplashScreenUiState> = _state.asStateFlow()
 
-
-    sealed interface SplashScreenUiState {
-        object Loading : SplashScreenUiState
-        object Success : SplashScreenUiState
-
-    }
-
     init {
         load()
     }
 
     /*Method to show splashscreen for few milliseconds*/
-    fun load(timeMillis: Long = SPLASH_TIME) {
+    private fun load(timeMillis: Long = SPLASH_TIME) {
         viewModelScope.launch {
             delay(timeMillis = timeMillis)
             _state.update { SplashScreenUiState.Success }
@@ -35,7 +28,7 @@ class SplashScreenViewModel : ViewModel() {
 
     }
 
-    companion object {
+    private companion object {
         const val SPLASH_TIME = 3000L
     }
 }

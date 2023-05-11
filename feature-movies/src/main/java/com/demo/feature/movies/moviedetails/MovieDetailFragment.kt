@@ -16,24 +16,7 @@ class MovieDetailFragment :
     BaseFragment<FragmentMoviesDetailsBinding>(FragmentMoviesDetailsBinding::inflate) {
     private val args: MovieDetailFragmentArgs by navArgs()
 
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                findNavController().popBackStack()
-
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
-    }
-
     override fun setUpView() {
-        getAndBindArgumentData()
-    }
-
-    private fun getAndBindArgumentData() {
         binding.movies = args.movieData
     }
-    
 }

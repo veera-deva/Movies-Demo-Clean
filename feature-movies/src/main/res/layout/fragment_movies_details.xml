@@ -21,7 +21,7 @@
             android:id="@+id/image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="@dimen/movie_detail_margin"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@+id/title"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,31 +34,30 @@
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/movie_detail_margin"
+            android:layout_marginEnd="@dimen/movie_detail_margin"
             android:text="@{movies.title}"
             android:textColor="?attr/colorOnSecondary"
-            android:textSize="24sp"
+            android:textSize="@dimen/movie_detail_title_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Kingdom of Heaven" />
+            tools:text="@string/movie_details_preview_title" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/movie_detail_margin"
+            android:layout_marginEnd="@dimen/movie_detail_margin"
             android:text="@{movies.description}"
             android:textColor="?attr/colorOnSecondary"
-            android:textSize="24sp"
+            android:textSize="@dimen/movie_detail_description_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title"
-            tools:text="In the twelfth century, blacksmith Balian travels to Jerusalem, a city seething with religious wars. He transforms into a defending warrior who saves the city and its people." />
-        />
+            tools:text="@string/movie_details_preview_description" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

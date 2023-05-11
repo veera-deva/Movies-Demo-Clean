@@ -74,8 +74,11 @@ dependencies {
     implementation(Dependencies.Google.material)
 
     /*Android HILT dependencies*/
-    implementation(Dependencies.Hilt.hiltAndroid)
-    kapt(Dependencies.Hilt.kaptHiltAndroidCompiler)
+    with(Dependencies.Hilt) {
+        implementation(hiltAndroid)
+        kapt(kaptHiltAndroidCompiler)
+
+    }
 
 
     /*Android Core unit test dependencies*/

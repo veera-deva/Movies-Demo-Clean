@@ -2,7 +2,7 @@ package com.demo.domain.usecase
 
 import com.demo.domain.entity.MovieEntity
 import com.demo.domain.model.NetworkResult
-import com.demo.domain.repository.FakeRepository
+import com.demo.domain.repository.MovieRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.toList
@@ -19,7 +19,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class GetMoviesUseCaseTest {
 
     @Mock
-    lateinit var movieRepository: FakeRepository
+    lateinit var movieRepository: MovieRepository
     lateinit var movieUseCase: MovieUseCase
 
 
