@@ -8,6 +8,10 @@ plugins {
 android {
     namespace = "com.demo.domain"
     compileSdk = 33
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 dependencies {
 
