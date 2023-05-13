@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import deps.Dependencies
 import deps.ProjectModules
 import deps.TestDependencies

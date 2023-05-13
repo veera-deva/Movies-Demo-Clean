@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import deps.Dependencies
 plugins {
     id("com.android.library")
