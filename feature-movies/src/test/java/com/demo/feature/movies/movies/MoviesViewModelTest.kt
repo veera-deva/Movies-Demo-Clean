@@ -15,6 +15,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
@@ -36,7 +37,7 @@ class MoviesViewModelTest {
 
     @Test
     fun `onMoviesViewModel init validate is loading`() {
-        assertEquals(MoviesViewModel.UiState.Loading, testObject.moviesUiState.value)
+        assertEquals(MoviesUIState.Loading, testObject.moviesUiState.value)
     }
 
     @Test
@@ -45,15 +46,13 @@ class MoviesViewModelTest {
             val movieList = mockedMovieList()
             testObject.moviesUiState.test {
                 val firstItem = awaitItem()
-                assertEquals(MoviesViewModel.UiState.Loading, firstItem)
-
-                Mockito.`when`(movieUseCase.invoke())
-                    .thenReturn(flow { emit(NetworkResult.Success(movieList)) })
+                assertEquals(MoviesUIState.Loading, firstItem)
+                `when`(movieUseCase()).thenReturn(flow { emit(NetworkResult.Success(movieList)) })
+                testObject.getMovies()
                 val secondItem = awaitItem()
-                assertEquals(MoviesViewModel.UiState.Success(movieList), secondItem)
+                assertEquals(MoviesUIState.Success(movieList), secondItem)
             }
         }
-
 
     @Test
     fun `onMoviesViewModel init validate movies list data is empty`() {
@@ -61,12 +60,12 @@ class MoviesViewModelTest {
             val movieList = emptyList<MovieEntity>()
             testObject.moviesUiState.test {
                 val firstItem = awaitItem()
-                assertEquals(MoviesViewModel.UiState.Loading, firstItem)
-
-                Mockito.`when`(movieUseCase.invoke())
+                assertEquals(MoviesUIState.Loading, firstItem)
+                `when`(movieUseCase.invoke())
                     .thenReturn(flow { emit(NetworkResult.Success(movieList)) })
+                testObject.getMovies()
                 val secondItem = awaitItem()
-                assertEquals(MoviesViewModel.UiState.Success(movieList), secondItem)
+                assertEquals(MoviesUIState.Success(movieList), secondItem)
             }
         }
     }
@@ -74,14 +73,13 @@ class MoviesViewModelTest {
     @Test
     fun `onMoviesViewModel init validate getMovies return error`() {
         runTest {
-            val movieList = emptyList<MovieEntity>()
             testObject.moviesUiState.test {
                 val firstItem = awaitItem()
-                assertEquals(MoviesViewModel.UiState.Loading, firstItem)
-                Mockito.`when`(movieUseCase.invoke())
+                assertEquals(MoviesUIState.Loading, firstItem)
+                `when`(movieUseCase())
                     .thenReturn(flow { emit(NetworkResult.Failure(Exception("Network Error"))) })
                 val secondItem = awaitItem()
-                assertEquals(MoviesViewModel.UiState.Error("Network Error"), secondItem)
+                assertEquals(MoviesUIState.Error("Network Error"), secondItem)
             }
         }
     }

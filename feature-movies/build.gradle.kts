@@ -1,11 +1,19 @@
 import deps.Dependencies
-
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
+    jacoco
+}
+
+val jacocoTestReport = tasks.register("jacocoTestReport")
+
+tasks.withType<Test> {
+    configure<JacocoTaskExtension> {
+        isIncludeNoLocationClasses = true
+    }
 }
 
 android {
@@ -49,8 +57,8 @@ android {
         viewBinding = true
         dataBinding = true
     }
-}
 
+}
 dependencies {
 
     with(deps.ProjectModules) {
@@ -93,20 +101,22 @@ dependencies {
         androidTestImplementation(hiltAndroidTesting)
         kaptAndroidTest(hiltAndroidCompiler)
         androidTestAnnotationProcessor(hiltAndroidCompiler)
-
     }
     /*Mockito test dependencies*/
     with(deps.TestDependencies.Mockito) {
         testImplementation(mockitoCore)
         testImplementation(mockitoInline)
         androidTestImplementation(mockitoAndroid)
-
     }
     /*Coroutines test dependencies*/
     testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
 
     /*Flow unit testing dependencies*/
     testImplementation(deps.TestDependencies.turbine)
+
+    /*Shared test module*/
     testImplementation(project(deps.ProjectModules.sharedTest))
 
+    /*Code coverage dependency*/
+    testImplementation(deps.TestDependencies.jacoco)
 }

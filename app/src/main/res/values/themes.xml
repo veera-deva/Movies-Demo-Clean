@@ -19,11 +19,4 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.SpaceEventClean.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.SpaceEventClean.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorPrimary">@color/purple_500</item>
-    </style>
 </resources>

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.demo.movies.MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/action_dark_mode"
+        android:icon="@drawable/ic_dark_mode"
+        android:title="@string/dark"
+        app:showAsAction="always" />
 </menu>

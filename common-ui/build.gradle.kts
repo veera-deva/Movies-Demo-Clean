@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -55,6 +56,12 @@ dependencies {
     /*Material design dependencies*/
     implementation(deps.Dependencies.Google.material)
 
+    /*Android HILT dependencies*/
+    with(deps.Dependencies.Hilt) {
+        implementation(hiltAndroid)
+        kapt(kaptHiltAndroidCompiler)
+
+    }
     //Glide for image rendering
     with(deps.Dependencies) {
         implementation(glide)

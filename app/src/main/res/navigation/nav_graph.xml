@@ -15,9 +15,7 @@
 
         <action
             android:id="@+id/action_splashfragmnet_to_moviesFragment"
-            app:destination="@id/nav_movies"
-            app:popUpTo="@id/SplashFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/nav_movies" />
     </fragment>
 
 

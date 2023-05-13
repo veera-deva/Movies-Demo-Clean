@@ -1,6 +1,5 @@
 package com.demo.feature.movies.movies
 
-import android.content.Context
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
@@ -8,7 +7,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.demo.common_ui.base.BaseFragment
-import com.demo.common_ui.utils.AlertDialogUtils
 import com.demo.common_ui.utils.launchAndRepeatWithLifeCycle
 import com.demo.domain.entity.MovieEntity
 import com.demo.feature.movies.databinding.FragmentMoviesBinding
@@ -22,12 +20,15 @@ import kotlinx.coroutines.launch
 class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding::inflate) {
     private val moviesViewModel by viewModels<MoviesViewModel>()
 
+
     override fun setUpView() {
         subscribeUI()
         setUpRecyclerView()
         binding.btnRetry.setOnClickListener {
             moviesViewModel.getMovies()
         }
+
+        handleOnBackPress()
     }
 
     private fun setUpRecyclerView() {
@@ -78,4 +79,13 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
             findNavController().navigate(action)
         }
 
+
+    private fun handleOnBackPress() {
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                activity?.finish()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+    }
 }

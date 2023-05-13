@@ -25,10 +25,6 @@ object TestDependencies {
 
     }
 
-    val turbine by lazy { "app.cash.turbine:turbine:${Versions.turbine}" }
-
-    val striktCore by lazy { "io.strikt:strikt-core:${Versions.striktCore}" }
-
     object Mockito {
         val mockitoCore by lazy {
             "org.mockito:mockito-core:${Versions.mockito}"
@@ -39,10 +35,6 @@ object TestDependencies {
         val mockitoInline by lazy {
             "org.mockito:mockito-inline:${Versions.mockitoInline}"
         }
-    }
-
-    val kotlinxCoroutinesTest by lazy {
-        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.testKotlinCoroutines}"
     }
 
     object JUnit {
@@ -67,6 +59,15 @@ object TestDependencies {
             "com.google.dagger:hilt-android-compiler:${Versions.hiltTest}"
         }
     }
+
+    val kotlinxCoroutinesTest by lazy {
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.testKotlinCoroutines}"
+    }
+    val turbine by lazy { "app.cash.turbine:turbine:${Versions.turbine}" }
+
+    val striktCore by lazy { "io.strikt:strikt-core:${Versions.striktCore}" }
+
+    val jacoco by lazy { "org.jacoco:org.jacoco.agent:${Versions.jacoco}" }
 
     val mockWebServer by lazy { "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}" }
 }
