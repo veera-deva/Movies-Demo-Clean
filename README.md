@@ -22,7 +22,7 @@ This application follows clean architecture multi module approach to have unidir
   * Kotlin
   * Coroutines - A coroutine is a concurrency design pattern that you can use on Android to simplify code that executes asynchronously
   * Flow - Flow is used to pass (send) a stream of data that can be computed asynchronously
-    Stateflow - Stateflow is a state-holder observable flow that emits the current and new state updates to its collectors
+  * Stateflow - Stateflow is a state-holder observable flow that emits the current and new state updates to its collectors
   * Dagger-Hilt - for dependency injection.
   * Kotlin-DSL - Used to handle gradle dependencies and config versions
   * JetPack
