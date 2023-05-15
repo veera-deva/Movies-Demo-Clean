@@ -1,7 +1,7 @@
 package com.demo.data.repository.mapper
 
-import com.demo.data.mapper.toDomain
-import com.demo.data.model.MovieResponse
+import com.demo.data.mapper.movies.toDomain
+import com.demo.data.model.movies.MovieResponse
 import org.junit.Assert
 import org.junit.Test
 

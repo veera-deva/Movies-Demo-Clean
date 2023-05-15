@@ -1,7 +1,7 @@
 package com.demo.data.repository.utils
 
-import com.demo.data.mapper.toDomain
-import com.demo.data.model.MovieResponse
+import com.demo.data.mapper.movies.toDomain
+import com.demo.data.model.movies.MovieResponse
 
 internal object MockedTestData {
     fun mockedMovieResponse() =

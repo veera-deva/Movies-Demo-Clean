@@ -1,9 +1,9 @@
 package com.demo.data.repository.movies
 
 import com.demo.data.api.MovieApi
-import com.demo.data.mapper.toDomain
-import com.demo.domain.model.NetworkResult
+import com.demo.data.mapper.movies.toDomain
 import com.demo.domain.entity.MovieEntity
+import com.demo.domain.model.NetworkResult
 import javax.inject.Inject
 
 /**

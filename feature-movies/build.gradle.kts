@@ -1,6 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 import deps.Dependencies
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -60,7 +61,6 @@ dependencies {
         implementation(project(domain))
     }
 
-
     /*AndroidX dependencies*/
     with(Dependencies.AndroidX) {
         implementation(coreKtx)
@@ -80,7 +80,6 @@ dependencies {
         kapt(kaptHiltAndroidCompiler)
 
     }
-
 
     /*Android Core unit test dependencies*/
     with(deps.TestDependencies.AndroidX) {

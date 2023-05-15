@@ -1,6 +1,6 @@
-package com.demo.data.mapper
+package com.demo.data.mapper.movies
 
-import com.demo.data.model.MovieResponse
+import com.demo.data.model.movies.MovieResponse
 import com.demo.domain.entity.MovieEntity
 
 /**
