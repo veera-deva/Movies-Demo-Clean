@@ -6,6 +6,9 @@ import com.demo.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * API response data class for movies API
+ * */
 class GetMoviesUseCaseImpl @Inject constructor(private val movieRepository: MovieRepository) :
     MovieUseCase {
     override fun invoke(): Flow<NetworkResult<List<MovieEntity>>> = movieRepository.getMovies()

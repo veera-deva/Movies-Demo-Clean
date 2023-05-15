@@ -11,7 +11,6 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
-    id("org.sonarqube")
 }
 
 android {
@@ -103,25 +102,5 @@ dependencies {
     testImplementation(TestDependencies.turbine)
 
     testImplementation(project(ProjectModules.sharedTest))
-}
-
-
-sonarqube {
-    properties {
-        property("sonar.projectName", "Movies-Demo")
-        property("sonar.projectKey", "Movies-Demo")
-        property("sonar.host.url", "http://localhost:9000")
-        property("sonar.tests", { "src/test/java" })
-        property("sonar.test.inclusions", "**/*Test*/**")
-        property("sonar.sourceEncoding", "UTF-8")
-        property("sonar.sources", "src/main/java")
-        property("sonar.login", "admin")
-        property("sonar.password", "admin")
-        property(
-            "sonar.exclusions", "**/*Test*/**," + "*.json," + "**/*test*/**," +
-                    "**/.gradle/**," +
-                    "**/R.class"
-        )
-    }
 }
 

@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
+/**
+ * Repository implementation class for movies API
+ * */
 class MovieRepositoryImpl @Inject constructor(private val dataSource: MovieDataSource) :
     MovieRepository {
 

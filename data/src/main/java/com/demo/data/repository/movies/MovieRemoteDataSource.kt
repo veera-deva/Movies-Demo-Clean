@@ -6,6 +6,9 @@ import com.demo.domain.model.NetworkResult
 import com.demo.domain.entity.MovieEntity
 import javax.inject.Inject
 
+/**
+ * Remote data source class for movies API
+ * */
 class MovieRemoteDataSource @Inject constructor(private val movieApi: MovieApi) :
     MovieDataSource {
 

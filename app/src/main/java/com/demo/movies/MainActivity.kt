@@ -28,9 +28,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(com.demo.common_ui.R.menu.menu_main, menu)
+        menu?.setGroupVisible(R.id.home_menu, true)
         @DrawableRes val darkModeIcon: Int =
-            if (isDarkModeEnabled()) R.drawable.ic_dark_mode_fill else R.drawable.ic_dark_mode
+            if (isDarkModeEnabled()) com.demo.common_ui.R.drawable.ic_dark_mode_fill else com.demo.common_ui.R.drawable.ic_dark_mode
         menu?.findItem(R.id.action_dark_mode)?.icon = ContextCompat.getDrawable(this, darkModeIcon)
         return true
     }

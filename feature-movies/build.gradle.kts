@@ -7,15 +7,6 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
-    jacoco
-}
-
-val jacocoTestReport = tasks.register("jacocoTestReport")
-
-tasks.withType<Test> {
-    configure<JacocoTaskExtension> {
-        isIncludeNoLocationClasses = true
-    }
 }
 
 android {
@@ -118,7 +109,4 @@ dependencies {
 
     /*Shared test module*/
     testImplementation(project(deps.ProjectModules.sharedTest))
-
-    /*Code coverage dependency*/
-    testImplementation(deps.TestDependencies.jacoco)
 }
