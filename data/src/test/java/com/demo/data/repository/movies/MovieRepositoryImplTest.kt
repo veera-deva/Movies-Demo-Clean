@@ -1,5 +1,6 @@
 package com.demo.data.repository.movies
 
+import com.demo.data.mapper.movies.DataMovieResponseToDomainMovieEntityMapper
 import com.demo.data.repository.utils.MockedTestData.mockedMovieResponse
 import com.demo.domain.model.NetworkResult
 import com.demo.domain.repository.MovieRepository
@@ -23,9 +24,12 @@ class MovieRepositoryImplTest {
     @Mock
     lateinit var remoteDataSource: MovieRemoteDataSource
 
+    @Mock
+    lateinit var mapper: DataMovieResponseToDomainMovieEntityMapper
+
     @Before
     fun setUp() {
-        moviesRepository = MovieRepositoryImpl(remoteDataSource)
+        moviesRepository = MovieRepositoryImpl(remoteDataSource, mapper)
     }
 
     @Test

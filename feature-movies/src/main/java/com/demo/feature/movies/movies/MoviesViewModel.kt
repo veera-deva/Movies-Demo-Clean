@@ -36,7 +36,7 @@ class MoviesViewModel @Inject constructor(private val moviesUseCase: GetMoviesUs
                 }
 
                 is NetworkResult.Failure -> {
-                    _moviesUiState.value = MoviesUIState.Error(response.e.message)
+                    _moviesUiState.value = MoviesUIState.Error(response.throwable.message)
                 }
 
                 else -> {
