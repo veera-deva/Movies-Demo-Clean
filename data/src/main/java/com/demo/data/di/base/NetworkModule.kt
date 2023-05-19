@@ -1,7 +1,6 @@
 package com.demo.data.di.base
 
 import com.demo.data.BuildConfig
-import com.demo.data.api.MovieApi
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -56,10 +55,5 @@ object NetworkModule {
             .addConverterFactory(moshiConverterFactory).client(okHttpClient).build()
     }
 
-    @Provides
-    @Singleton
-    fun provideMovieApi(retrofit: Retrofit): MovieApi {
-        return retrofit.create(MovieApi::class.java)
-    }
 
 }

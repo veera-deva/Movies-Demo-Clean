@@ -1,16 +1,14 @@
 @file:Suppress("UnstableApiUsage")
 
-import deps.Dependencies
 import deps.ProjectModules
 import deps.TestDependencies
 
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.dagger.hilt.android")
-    id("kotlin-kapt")
-    id("androidx.navigation.safeargs.kotlin")
+    id(deps.Dependencies.Plugins.android)
+    id(deps.Dependencies.Plugins.kotlinAndroid)
+    id(deps.Dependencies.Plugins.hiltAndroid)
+    id(deps.Dependencies.Plugins.kotlinKapt)
+    id(deps.Dependencies.Plugins.navigationSafArgs)
 }
 
 android {
@@ -28,6 +26,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            testCoverage { enableUnitTestCoverage }
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -56,7 +57,7 @@ dependencies {
     implementation(project(ProjectModules.featureMovies))
 
     /*AndroidX dependencies*/
-    with(Dependencies.AndroidX) {
+    with(deps.Dependencies.AndroidX) {
         implementation(coreKtx)
         implementation(appCompat)
         implementation(constrainLayout)
@@ -66,12 +67,12 @@ dependencies {
     }
 
     /*Coroutines*/
-    implementation(Dependencies.Kotlin.coroutinesCore)
+    implementation(deps.Dependencies.Kotlin.coroutinesCore)
     /*Material design dependencies*/
-    implementation(Dependencies.Google.material)
+    implementation(deps.Dependencies.Google.material)
 
     /*Android HILT dependencies*/
-    with(Dependencies.Hilt) {
+    with(deps.Dependencies.Hilt) {
         implementation(hiltAndroid)
         kapt(kaptHiltAndroidCompiler)
 

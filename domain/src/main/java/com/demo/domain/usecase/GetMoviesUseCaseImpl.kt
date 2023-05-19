@@ -9,7 +9,6 @@ import javax.inject.Inject
 /**
  * API response data class for movies API
  * */
-class GetMoviesUseCaseImpl @Inject constructor(private val movieRepository: MovieRepository) :
-    MovieUseCase {
-    override fun invoke(): Flow<NetworkResult<List<MovieEntity>>> = movieRepository.getMovies()
+class GetMoviesUseCaseImpl @Inject constructor(private val movieRepository: MovieRepository) {
+    operator fun invoke(): Flow<NetworkResult<List<MovieEntity>>> = movieRepository.getMovies()
 }

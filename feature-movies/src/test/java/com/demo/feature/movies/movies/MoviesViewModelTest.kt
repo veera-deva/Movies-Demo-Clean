@@ -3,7 +3,7 @@ package com.demo.feature.movies.movies
 import app.cash.turbine.test
 import com.demo.domain.entity.MovieEntity
 import com.demo.domain.model.NetworkResult
-import com.demo.domain.usecase.MovieUseCase
+import com.demo.domain.usecase.GetMoviesUseCaseImpl
 import com.demo.shared_test.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
@@ -14,7 +14,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -25,7 +24,7 @@ class MoviesViewModelTest {
     private lateinit var testObject: MoviesViewModel
 
     @Mock
-    private lateinit var movieUseCase: MovieUseCase
+    private lateinit var movieUseCase: GetMoviesUseCaseImpl
 
     @get:Rule
     var testCoroutineRUle = MainCoroutineRule()

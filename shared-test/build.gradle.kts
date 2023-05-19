@@ -1,9 +1,9 @@
-import deps.ProjectModules
+@file:Suppress("UnstableApiUsage")
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    id(deps.Dependencies.Plugins.androidLibrary)
+    id(deps.Dependencies.Plugins.kotlinAndroid)
+    id(deps.Dependencies.Plugins.kotlinKapt)
 }
 
 android {
@@ -36,8 +36,8 @@ android {
 
 dependencies {
 
-    implementation(project(ProjectModules.app))
-    implementation(project(ProjectModules.featureMovies))
+    implementation(project(deps.ProjectModules.app))
+    implementation(project(deps.ProjectModules.featureMovies))
 
     /*Coroutines*/
     implementation(deps.Dependencies.Kotlin.coroutinesCore)

@@ -12,6 +12,20 @@ import deps.Versions.retrofitVersion
 
 object Dependencies {
 
+    object Plugins {
+        const val kotlin = "kotlin"
+        const val javaLibrary = "java-library"
+        const val android = "com.android.application"
+        const val kotlinAndroid = "kotlin-android"
+        const val navigationSafArgs = "androidx.navigation.safeargs.kotlin"
+        const val kotlinKapt = "kotlin-kapt"
+        const val hiltAndroid = "com.google.dagger.hilt.android"
+        const val androidLibrary = "com.android.library"
+        const val kotlinParcelize = "kotlin-parcelize"
+        const val jetbrainsKotlinAndroid = "org.jetbrains.kotlin.android"
+
+    }
+
     object AndroidX {
         val coreKtx by lazy { "androidx.core:core-ktx:${coreKTXVersion}" }
         val appCompat by lazy { "androidx.appcompat:appcompat:${appCompatVersion}" }
@@ -55,6 +69,8 @@ object Dependencies {
             "com.squareup.okhttp3:logging-interceptor:${okHttpLoggingInterceptorVersion}"
         }
     }
+
+    val javax by lazy { "javax.inject:javax.inject:${Versions.javaxInjectVersion}" }
 
     //Glide for image rendering
     val glide by lazy { "com.github.bumptech.glide:glide:${Versions.glideVersion}" }

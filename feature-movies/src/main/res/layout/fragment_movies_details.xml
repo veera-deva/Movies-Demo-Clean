@@ -8,7 +8,7 @@
 
         <variable
             name="movies"
-            type="com.demo.domain.entity.MovieEntity" />
+            type="com.demo.feature.movies.moviedetails.MovieDetailData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

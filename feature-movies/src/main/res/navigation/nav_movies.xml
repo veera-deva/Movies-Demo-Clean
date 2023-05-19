@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_movies_details">
         <argument
             android:name="movieData"
-            app:argType="com.demo.domain.entity.MovieEntity" />
+            app:argType="com.demo.feature.movies.moviedetails.MovieDetailData" />
     </fragment>
 
 </navigation>

@@ -32,6 +32,7 @@ object Versions {
     const val turbine = "0.12.1"
     const val striktCore = "0.31.0"
     const val jacoco = "0.8.10"
+    const val javaxInjectVersion = "1"
 
 
 }

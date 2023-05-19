@@ -1,24 +1,18 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("kotlin-parcelize")
-    id("com.google.dagger.hilt.android")
+    id(deps.Dependencies.Plugins.kotlin)
+    id(deps.Dependencies.Plugins.javaLibrary)
 }
-android {
-    namespace = "com.demo.domain"
-    compileSdk = 33
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
+
 dependencies {
-    /*Android HILT dependencies*/
-    with(deps.Dependencies.Hilt) {
-        implementation(hiltAndroid)
-        kapt(kaptHiltAndroidCompiler)
-    }
+
+    // JavaX
+    implementation(deps.Dependencies.javax)
+
     /*Coroutines*/
     implementation(deps.Dependencies.Kotlin.coroutinesCore)
 

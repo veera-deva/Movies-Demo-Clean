@@ -1,13 +1,14 @@
 @file:Suppress("UnstableApiUsage")
 
-import deps.Dependencies
-
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.dagger.hilt.android")
-    id("kotlin-kapt")
-    id("androidx.navigation.safeargs.kotlin")
+    with(deps.Dependencies.Plugins) {
+        id(androidLibrary)
+        id(kotlinAndroid)
+        id(hiltAndroid)
+        id(kotlinKapt)
+        id(kotlinParcelize)
+        id(navigationSafArgs)
+    }
 }
 
 android {
@@ -62,7 +63,7 @@ dependencies {
     }
 
     /*AndroidX dependencies*/
-    with(Dependencies.AndroidX) {
+    with(deps.Dependencies.AndroidX) {
         implementation(coreKtx)
         implementation(appCompat)
 
@@ -72,10 +73,10 @@ dependencies {
         api(navigationFeaturesFragment)
     }
 
-    implementation(Dependencies.Google.material)
+    implementation(deps.Dependencies.Google.material)
 
     /*Android HILT dependencies*/
-    with(Dependencies.Hilt) {
+    with(deps.Dependencies.Hilt) {
         implementation(hiltAndroid)
         kapt(kaptHiltAndroidCompiler)
 

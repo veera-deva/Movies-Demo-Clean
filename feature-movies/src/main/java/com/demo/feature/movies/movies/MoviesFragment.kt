@@ -10,6 +10,7 @@ import com.demo.common_ui.base.BaseFragment
 import com.demo.common_ui.utils.launchAndRepeatWithLifeCycle
 import com.demo.domain.entity.MovieEntity
 import com.demo.feature.movies.databinding.FragmentMoviesBinding
+import com.demo.feature.movies.moviedetails.MovieDetailData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -63,19 +64,29 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
                         }
 
                         is MoviesUIState.Error -> {
-                            hideLoading()
-                            binding.llNoDataView.visibility = View.VISIBLE
+                            loadNoDataView()
                         }
+
                     }
                 }
             }
         }
     }
 
+    private fun loadNoDataView() {
+        hideLoading()
+        binding.llNoDataView.visibility = View.VISIBLE
+    }
+
     private val onMovieItemClicked: (movieEntity: MovieEntity, itemVIew: View) -> Unit =
         { movieEntity, _ ->
             val action =
-                MoviesFragmentDirections.actionMovieFragmentToMovieDetailsFragment(movieEntity)
+                MoviesFragmentDirections.actionMovieFragmentToMovieDetailsFragment(
+                    MovieDetailData(
+                        title = movieEntity.title,
+                        description = movieEntity.description, image = movieEntity.image
+                    )
+                )
             findNavController().navigate(action)
         }
 

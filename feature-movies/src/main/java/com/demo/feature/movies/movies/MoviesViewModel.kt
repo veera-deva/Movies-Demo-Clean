@@ -3,9 +3,8 @@ package com.demo.feature.movies.movies
 import androidx.lifecycle.viewModelScope
 import com.demo.common_ui.base.BaseViewModel
 import com.demo.common_ui.utils.Constants
-import com.demo.domain.entity.MovieEntity
 import com.demo.domain.model.NetworkResult
-import com.demo.domain.usecase.MovieUseCase
+import com.demo.domain.usecase.GetMoviesUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +17,7 @@ import javax.inject.Inject
  * View model for MoviesFragment
  * */
 @HiltViewModel
-class MoviesViewModel @Inject constructor(private val moviesUseCase: MovieUseCase) :
+class MoviesViewModel @Inject constructor(private val moviesUseCase: GetMoviesUseCaseImpl) :
     BaseViewModel() {
 
     private val _moviesUiState = MutableStateFlow<MoviesUIState>(MoviesUIState.Loading)
