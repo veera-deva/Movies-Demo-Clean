@@ -38,6 +38,6 @@ internal object MockedTestData {
                 image = "Mock url 2",
                 category = "Mock category 2"
             )
-        ).toList()
+        )
 
 }

@@ -1,5 +1,4 @@
 @file:Suppress("UnstableApiUsage")
-
 plugins {
     with(deps.Dependencies.Plugins) {
         id(androidLibrary)
@@ -95,12 +94,13 @@ dependencies {
         kaptAndroidTest(hiltAndroidCompiler)
         androidTestAnnotationProcessor(hiltAndroidCompiler)
     }
-    /*Mockito test dependencies*/
-    with(deps.TestDependencies.Mockito) {
-        testImplementation(mockitoCore)
-        testImplementation(mockitoInline)
-        androidTestImplementation(mockitoAndroid)
-    }
+
+    /*Mockk dependency*/
+    testImplementation(deps.TestDependencies.Mockk.mockk)
+
+    /*Strikt assertion library*/
+    testImplementation(deps.TestDependencies.striktCore)
+
     /*Coroutines test dependencies*/
     testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
 

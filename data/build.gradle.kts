@@ -1,8 +1,10 @@
 plugins {
-    id(deps.Dependencies.Plugins.androidLibrary)
-    id(deps.Dependencies.Plugins.kotlinAndroid)
-    id(deps.Dependencies.Plugins.hiltAndroid)
-    id(deps.Dependencies.Plugins.kotlinKapt)
+    with(deps.Dependencies.Plugins){
+        id(androidLibrary)
+        id(kotlinAndroid)
+        id(hiltAndroid)
+        id(kotlinKapt)
+    }
 }
 android {
     namespace = "com.demo.data"
@@ -37,6 +39,10 @@ dependencies {
         testImplementation(mockitoCore)
         testImplementation(mockitoInline)
     }
+
+    /*Mockk dependency*/
+    testImplementation(deps.TestDependencies.Mockk.mockk)
+
     with(deps.TestDependencies) {
         /*Turbine library to test kotlin flows */
         testImplementation(turbine)

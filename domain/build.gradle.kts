@@ -22,12 +22,9 @@ dependencies {
     /*Coroutines test dependencies*/
     testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
 
-    /*Mockito dependencies*/
-    with(deps.TestDependencies.Mockito) {
-        testImplementation(mockitoCore)
-        testImplementation(mockitoInline)
-    }
+    /*Mockk dependency*/
+    testImplementation(deps.TestDependencies.Mockk.mockk)
 
-    /*Turbine library to test kotlin flows */
-    testImplementation(deps.TestDependencies.turbine)
+    /*Strikt assertion library*/
+    testImplementation(deps.TestDependencies.striktCore)
 }

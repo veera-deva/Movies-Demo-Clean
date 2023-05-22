@@ -4,11 +4,13 @@ import deps.ProjectModules
 import deps.TestDependencies
 
 plugins {
-    id(deps.Dependencies.Plugins.android)
-    id(deps.Dependencies.Plugins.kotlinAndroid)
-    id(deps.Dependencies.Plugins.hiltAndroid)
-    id(deps.Dependencies.Plugins.kotlinKapt)
-    id(deps.Dependencies.Plugins.navigationSafArgs)
+    with(deps.Dependencies.Plugins) {
+        id(android)
+        id(kotlinAndroid)
+        id(hiltAndroid)
+        id(kotlinKapt)
+        id(navigationSafArgs)
+    }
 }
 
 android {
@@ -86,14 +88,9 @@ dependencies {
 
     /*Android Core unit test dependencies*/
     testImplementation(TestDependencies.JUnit.junit)
-    androidTestImplementation(TestDependencies.AndroidX.junit)
-    androidTestImplementation(TestDependencies.AndroidX.espressoCore)
-
-    /*Mockito test dependencies*/
-    with(TestDependencies.Mockito) {
-        testImplementation(mockitoCore)
-        testImplementation(mockitoInline)
-        androidTestImplementation(mockitoAndroid)
+    with(TestDependencies.AndroidX) {
+        androidTestImplementation(junit)
+        androidTestImplementation(espressoCore)
     }
 
     /*Coroutines test dependencies*/

@@ -4,42 +4,38 @@ import com.demo.data.mapper.movies.DataMovieResponseToDomainMovieEntityMapper
 import com.demo.data.repository.utils.MockedTestData.mockedMovieResponse
 import com.demo.domain.model.NetworkResult
 import com.demo.domain.repository.MovieRepository
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.junit.MockitoJUnitRunner
+import strikt.api.expectThat
 
 @ExperimentalCoroutinesApi
-@RunWith(MockitoJUnitRunner::class)
 class MovieRepositoryImplTest {
 
     private lateinit var moviesRepository: MovieRepository
 
-    @Mock
+    @MockK
     lateinit var remoteDataSource: MovieRemoteDataSource
 
-    @Mock
+    @MockK
     lateinit var mapper: DataMovieResponseToDomainMovieEntityMapper
 
     @Before
     fun setUp() {
+        MockKAnnotations.init(this)
         moviesRepository = MovieRepositoryImpl(remoteDataSource, mapper)
     }
 
     @Test
     fun `onMovieRepositoryImpl getMovies should return movie list`() = runTest {
         val movieResponse = mockedMovieResponse()
-        Mockito.`when`(remoteDataSource.getMovies())
-            .thenReturn(NetworkResult.Success(movieResponse))
+        coEvery { remoteDataSource.getMovies() }.returns(NetworkResult.Success(movieResponse))
         val responseFlow = moviesRepository.getMovies().toList()
-        assert(responseFlow.isNotEmpty())
+        expectThat(responseFlow.isNotEmpty())
     }
-
-
 }

@@ -3,39 +3,38 @@ package com.demo.domain.usecase
 import com.demo.domain.entity.MovieEntity
 import com.demo.domain.model.NetworkResult
 import com.demo.domain.repository.MovieRepository
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
+import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.junit.MockitoJUnitRunner
-
+import strikt.api.expect
 
 @ExperimentalCoroutinesApi
-@RunWith(MockitoJUnitRunner::class)
 class GetMoviesUseCaseTest {
 
-    @Mock
-    lateinit var movieRepository: MovieRepository
-    lateinit var movieUseCase: MovieUseCase
+    @MockK
+    lateinit var userRepository: MovieRepository
+    lateinit var movieUseCase: GetMoviesUseCaseImpl
 
-
-    @org.junit.Before
+    @Before
     fun setUp() {
-        movieUseCase = GetMoviesUseCaseImpl(movieRepository)
+        MockKAnnotations.init(this)
+        movieUseCase = GetMoviesUseCaseImpl(userRepository)
     }
 
     @Test
-    fun `onGetMovieUseCaseImpl invoke should return movie list`() = runTest {
-        val mockedResponse = mockedMovieList()
-        Mockito.`when`(movieRepository.getMovies())
-            .thenReturn(flowOf(NetworkResult.Success(mockedResponse)))
-        val useCase = movieUseCase.invoke().toList()
-        assert(useCase.isNotEmpty())
-    }
+    fun `onMovieUseCaseTest invoke method should return movies list`() =
+        runTest {
+            coEvery { movieUseCase.invoke() } returns flowOf(NetworkResult.Success(mockedMovieList()))
+            val result = movieUseCase().toList()
+            expect { result.isNotEmpty() }
+        }
+
 
     private fun mockedMovieList() = listOf(
         MovieEntity(

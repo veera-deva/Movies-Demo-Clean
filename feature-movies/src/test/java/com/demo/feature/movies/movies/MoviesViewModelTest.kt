@@ -5,25 +5,24 @@ import com.demo.domain.entity.MovieEntity
 import com.demo.domain.model.NetworkResult
 import com.demo.domain.usecase.GetMoviesUseCaseImpl
 import com.demo.shared_test.MainCoroutineRule
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.junit.MockitoJUnitRunner
+import strikt.api.expectThat
+import strikt.assertions.isEqualTo
 
 @ExperimentalCoroutinesApi
-@RunWith(MockitoJUnitRunner::class)
 class MoviesViewModelTest {
 
     private lateinit var testObject: MoviesViewModel
 
-    @Mock
+    @RelaxedMockK
     private lateinit var movieUseCase: GetMoviesUseCaseImpl
 
     @get:Rule
@@ -31,12 +30,13 @@ class MoviesViewModelTest {
 
     @Before
     fun setUp() {
+        MockKAnnotations.init(this)
         testObject = MoviesViewModel(movieUseCase)
     }
 
     @Test
     fun `onMoviesViewModel init validate is loading`() {
-        assertEquals(MoviesUIState.Loading, testObject.moviesUiState.value)
+        expectThat(testObject.moviesUiState.value).isEqualTo(MoviesUIState.Loading)
     }
 
     @Test
@@ -45,11 +45,11 @@ class MoviesViewModelTest {
             val movieList = mockedMovieList()
             testObject.moviesUiState.test {
                 val firstItem = awaitItem()
-                assertEquals(MoviesUIState.Loading, firstItem)
-                `when`(movieUseCase()).thenReturn(flow { emit(NetworkResult.Success(movieList)) })
+                expectThat(firstItem).isEqualTo(MoviesUIState.Loading)
+                coEvery { movieUseCase() }.returns(flow { emit(NetworkResult.Success(movieList)) })
                 testObject.getMovies()
                 val secondItem = awaitItem()
-                assertEquals(MoviesUIState.Success(movieList), secondItem)
+                expectThat(secondItem).isEqualTo(MoviesUIState.Success(movieList))
             }
         }
 
@@ -59,12 +59,11 @@ class MoviesViewModelTest {
             val movieList = emptyList<MovieEntity>()
             testObject.moviesUiState.test {
                 val firstItem = awaitItem()
-                assertEquals(MoviesUIState.Loading, firstItem)
-                `when`(movieUseCase.invoke())
-                    .thenReturn(flow { emit(NetworkResult.Success(movieList)) })
+                expectThat(firstItem).isEqualTo(MoviesUIState.Loading)
+                coEvery { movieUseCase() }.returns(flow { emit(NetworkResult.Success(movieList)) })
                 testObject.getMovies()
                 val secondItem = awaitItem()
-                assertEquals(MoviesUIState.Success(movieList), secondItem)
+                expectThat(secondItem).isEqualTo(MoviesUIState.Success(movieList))
             }
         }
     }
@@ -74,15 +73,14 @@ class MoviesViewModelTest {
         runTest {
             testObject.moviesUiState.test {
                 val firstItem = awaitItem()
-                assertEquals(MoviesUIState.Loading, firstItem)
-                `when`(movieUseCase())
-                    .thenReturn(flow { emit(NetworkResult.Failure(Exception("Network Error"))) })
+                expectThat(firstItem).isEqualTo(MoviesUIState.Loading)
+                coEvery { movieUseCase() }.returns(flow { emit(NetworkResult.Failure(Exception("Network Error"))) })
+                testObject.getMovies()
                 val secondItem = awaitItem()
-                assertEquals(MoviesUIState.Error("Network Error"), secondItem)
+                expectThat(secondItem).isEqualTo(MoviesUIState.Error("Network Error"))
             }
         }
     }
-
 
     private fun mockedMovieList() = listOf(
         MovieEntity(
