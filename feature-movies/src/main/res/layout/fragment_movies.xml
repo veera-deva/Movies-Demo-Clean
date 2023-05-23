@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         tools:context="com.demo.feature.movies.movies.MoviesFragment">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/llNoDataView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,6 +26,9 @@
                 android:id="@+id/imgRetry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_error_retry" />
 
             <TextView
@@ -34,16 +37,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/movie_list_text_margin"
                 android:text="@string/errorMsg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgRetry" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRetry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/movie_list_text_margin"
-                android:text="@string/Retry"
-                app:layout_constraintTop_toBottomOf="@+id/txtErrorMessage" />
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_movies"

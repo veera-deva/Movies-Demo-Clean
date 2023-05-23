@@ -34,7 +34,7 @@ object Dependencies {
 
 
     object Google {
-        val material by lazy { "com.google.android.material:material:$Versions.materialVersion" }
+        val material by lazy { "com.google.android.material:material:${Versions.materialVersion}" }
     }
 
     object Kotlin {
