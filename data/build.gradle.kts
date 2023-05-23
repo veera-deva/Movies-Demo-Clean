@@ -1,5 +1,5 @@
 plugins {
-    with(deps.Dependencies.Plugins){
+    with(deps.Dependencies.Plugins) {
         id(androidLibrary)
         id(kotlinAndroid)
         id(hiltAndroid)
@@ -21,8 +21,10 @@ dependencies {
         kapt(kaptHiltAndroidCompiler)
     }
     /*Kotlin coroutines*/
-    implementation(deps.Dependencies.Kotlin.kotlinxCoroutines)
-    implementation(deps.Dependencies.Kotlin.coroutinesCore)
+    with(deps.Dependencies.Kotlin) {
+        implementation(kotlinxCoroutines)
+        implementation(coroutinesCore)
+    }
 
     //*Retrofit*//*
     with(deps.Dependencies.Network) {
@@ -33,13 +35,6 @@ dependencies {
     /*Testing dependencies*/
 
     testImplementation(deps.TestDependencies.JUnit.junit)
-
-    /*Mockito dependencies*/
-    with(deps.TestDependencies.Mockito) {
-        testImplementation(mockitoCore)
-        testImplementation(mockitoInline)
-    }
-
     /*Mockk dependency*/
     testImplementation(deps.TestDependencies.Mockk.mockk)
 
@@ -47,10 +42,7 @@ dependencies {
         /*Turbine library to test kotlin flows */
         testImplementation(turbine)
         testImplementation(striktCore)
-
         /*Coroutines test dependencies*/
         testImplementation(kotlinxCoroutinesTest)
     }
-    implementation(kotlin("reflect"))
-
 }

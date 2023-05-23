@@ -9,22 +9,19 @@ java {
 }
 
 dependencies {
-
+    /*Coroutines*/
+    implementation(deps.Dependencies.Kotlin.coroutinesCore)
     // JavaX
     implementation(deps.Dependencies.javax)
 
-    /*Coroutines*/
-    implementation(deps.Dependencies.Kotlin.coroutinesCore)
-
+    with(deps.TestDependencies) {
+        /*Coroutines test dependencies*/
+        testImplementation(kotlinxCoroutinesTest)
+        /*Strikt assertion library*/
+        testImplementation(striktCore)
+    }
     /*Testing dependencies*/
     testImplementation(deps.TestDependencies.JUnit.junit)
-
-    /*Coroutines test dependencies*/
-    testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
-
     /*Mockk dependency*/
     testImplementation(deps.TestDependencies.Mockk.mockk)
-
-    /*Strikt assertion library*/
-    testImplementation(deps.TestDependencies.striktCore)
 }

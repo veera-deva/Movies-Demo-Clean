@@ -25,28 +25,11 @@ object TestDependencies {
         val fragmentTesting by lazy {
             "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
         }
-
-
-    }
-
-    object Mockito {
-        val mockitoCore by lazy {
-            "org.mockito:mockito-core:${Versions.mockito}"
-        }
-        val mockitoAndroid by lazy {
-            "org.mockito:mockito-android:${Versions.mockitoAndroid}"
-        }
-        val mockitoInline by lazy {
-            "org.mockito:mockito-inline:${Versions.mockitoInline}"
-        }
     }
 
     object JUnit {
         val junit by lazy {
             "junit:junit:${Versions.junit}"
-        }
-        val junitPlatformRunner by lazy {
-            "org.junit.platform:junit-platform-runner:${Versions.junitPlatformRunner}"
         }
     }
 

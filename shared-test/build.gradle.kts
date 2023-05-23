@@ -54,14 +54,6 @@ dependencies {
     }
     /*Coroutines test dependencies*/
     implementation(deps.TestDependencies.kotlinxCoroutinesTest)
-
-    /*Mockito test dependencies*/
-    with(deps.TestDependencies.Mockito) {
-        implementation(mockitoCore)
-        implementation(mockitoInline)
-        implementation(mockitoAndroid)
-
-    }
     /*Flow unit testing dependencies*/
     implementation(deps.TestDependencies.turbine)
 

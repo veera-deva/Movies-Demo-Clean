@@ -66,7 +66,6 @@ dependencies {
     with(deps.Dependencies.AndroidX) {
         implementation(coreKtx)
         implementation(appCompat)
-
         /*Navigation dependencies*/
         api(navigationFragment)
         api(navigationUi)
@@ -81,7 +80,6 @@ dependencies {
         kapt(kaptHiltAndroidCompiler)
 
     }
-
     /*Android Core unit test dependencies*/
     with(deps.TestDependencies.AndroidX) {
         testImplementation(deps.TestDependencies.JUnit.junit)
@@ -90,26 +88,22 @@ dependencies {
         // Testing Fragments in Isolation
         debugImplementation(fragmentTesting)
     }
-
     /*Hilt Testing dependencies*/
     with(deps.TestDependencies.Hilt) {
         androidTestImplementation(hiltAndroidTesting)
         kaptAndroidTest(hiltAndroidCompiler)
         androidTestAnnotationProcessor(hiltAndroidCompiler)
     }
-
     /*Mockk dependency*/
     testImplementation(deps.TestDependencies.Mockk.mockk)
-
-    /*Strikt assertion library*/
-    testImplementation(deps.TestDependencies.striktCore)
-
-    /*Coroutines test dependencies*/
-    testImplementation(deps.TestDependencies.kotlinxCoroutinesTest)
-
-    /*Flow unit testing dependencies*/
-    testImplementation(deps.TestDependencies.turbine)
-
+    with(deps.TestDependencies) {
+        /*Strikt assertion library*/
+        testImplementation(striktCore)
+        /*Coroutines test dependencies*/
+        testImplementation(kotlinxCoroutinesTest)
+        /*Flow unit testing dependencies*/
+        testImplementation(turbine)
+    }
     /*Shared test module*/
     testImplementation(project(deps.ProjectModules.sharedTest))
 }
