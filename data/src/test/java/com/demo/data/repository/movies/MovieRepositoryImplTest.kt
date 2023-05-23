@@ -7,6 +7,7 @@ import com.demo.domain.repository.MovieRepository
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
@@ -22,7 +23,7 @@ class MovieRepositoryImplTest {
     @MockK
     lateinit var remoteDataSource: MovieRemoteDataSource
 
-    @MockK
+    @RelaxedMockK
     lateinit var mapper: DataMovieResponseToDomainMovieEntityMapper
 
     @Before
