@@ -1,4 +1,5 @@
 @file:Suppress("UnstableApiUsage")
+
 plugins {
     with(deps.Dependencies.Plugins) {
         id(androidLibrary)
@@ -86,6 +87,8 @@ dependencies {
         testImplementation(deps.TestDependencies.JUnit.junit)
         androidTestImplementation(junit)
         androidTestImplementation(espressoCore)
+        // Testing Fragments in Isolation
+        debugImplementation(fragmentTesting)
     }
 
     /*Hilt Testing dependencies*/
