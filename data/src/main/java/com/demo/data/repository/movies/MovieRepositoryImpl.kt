@@ -16,8 +16,7 @@ import javax.inject.Inject
 class MovieRepositoryImpl @Inject constructor(
     private val dataSource: MovieDataSource,
     private val movieDataMapper: DataMovieResponseToDomainMovieEntityMapper
-) :
-    MovieRepository {
+) : MovieRepository {
 
     override fun getMovies(): Flow<NetworkResult<List<MovieEntity>>> {
         return flow {

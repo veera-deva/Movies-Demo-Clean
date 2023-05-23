@@ -21,7 +21,6 @@ import kotlinx.coroutines.launch
 class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding::inflate) {
     private val moviesViewModel by viewModels<MoviesViewModel>()
 
-
     override fun setUpView() {
         subscribeUI()
         setUpRecyclerView()
@@ -85,7 +84,6 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
                 )
             findNavController().navigate(action)
         }
-
 
     private fun handleOnBackPress() {
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
