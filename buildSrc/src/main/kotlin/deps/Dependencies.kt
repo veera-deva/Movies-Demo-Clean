@@ -1,15 +1,5 @@
 package deps
 
-import deps.Versions.appCompatVersion
-import deps.Versions.constraintLayoutVersion
-import deps.Versions.coreKTXVersion
-import deps.Versions.hiltAndroidVersion
-import deps.Versions.hiltKaptCompilerVersion
-import deps.Versions.kotlinxCoroutinesVersion
-import deps.Versions.materialVersion
-import deps.Versions.okHttpLoggingInterceptorVersion
-import deps.Versions.retrofitVersion
-
 object Dependencies {
 
     object Plugins {
@@ -27,11 +17,11 @@ object Dependencies {
     }
 
     object AndroidX {
-        val coreKtx by lazy { "androidx.core:core-ktx:${coreKTXVersion}" }
-        val appCompat by lazy { "androidx.appcompat:appcompat:${appCompatVersion}" }
-        val material by lazy { "com.google.android.material:material:${materialVersion}" }
+        val coreKtx by lazy { "androidx.core:core-ktx:${Versions.coreKTXVersion}" }
+        val appCompat by lazy { "androidx.appcompat:appcompat:${Versions.appCompatVersion}" }
+        val material by lazy { "com.google.android.material:material:${Versions.materialVersion}" }
         val constrainLayout by lazy {
-            "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}"
+            "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
         }
         val navigationFragment by lazy {
             "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
@@ -44,29 +34,29 @@ object Dependencies {
 
 
     object Google {
-        val material by lazy { "com.google.android.material:material:$materialVersion" }
+        val material by lazy { "com.google.android.material:material:$Versions.materialVersion" }
     }
 
     object Kotlin {
         val kotlinxCoroutines by lazy {
-            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${kotlinxCoroutinesVersion}"
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinxCoroutinesVersion}"
         }
         val coroutinesCore by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:${Versions.coroutinesCoreJVM}" }
     }
 
     object Hilt {
-        val hiltAndroid by lazy { "com.google.dagger:hilt-android:${hiltAndroidVersion}" }
+        val hiltAndroid by lazy { "com.google.dagger:hilt-android:${Versions.hiltAndroidVersion}" }
         val kaptHiltAndroidCompiler by lazy {
-            "com.google.dagger:hilt-android-compiler:${hiltKaptCompilerVersion}"
+            "com.google.dagger:hilt-android-compiler:${Versions.hiltKaptCompilerVersion}"
         }
     }
 
     object Network {
-        val retrofit by lazy { "com.squareup.retrofit2:retrofit:${retrofitVersion}" }
+        val retrofit by lazy { "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}" }
         val retrofitMoshiConvertor by lazy { "com.squareup.retrofit2:converter-moshi:${Versions.retrofitMoshi}" }
 
         val okhttpLoggingInterceptor by lazy {
-            "com.squareup.okhttp3:logging-interceptor:${okHttpLoggingInterceptorVersion}"
+            "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLoggingInterceptorVersion}"
         }
     }
 

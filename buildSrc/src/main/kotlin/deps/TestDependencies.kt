@@ -18,10 +18,14 @@ object TestDependencies {
         val espressoCore by lazy {
             "androidx.test.espresso:espresso-core:${Versions.espresso}"
         }
-        
+
         val junit by lazy {
             "androidx.test.ext:junit:${Versions.androidxJunit}"
         }
+        val fragmentTesting by lazy {
+            "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
+        }
+
 
     }
 
@@ -48,7 +52,6 @@ object TestDependencies {
 
     object Mockk {
         val mockk by lazy { "io.mockk:mockk:${Versions.mockk}" }
-        val mockkAgentJvm by lazy { "io.mockk:mockk-agent-jvm:${Versions.mockk}" }
     }
 
     object Hilt {
