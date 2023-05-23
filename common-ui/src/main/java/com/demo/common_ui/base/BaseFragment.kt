@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.demo.common_ui.utils.ProgressDialogUtil
-import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseFragment<T : ViewBinding>(private val inflateMethod: (LayoutInflater, ViewGroup?, Boolean) -> T) :
     Fragment() {
