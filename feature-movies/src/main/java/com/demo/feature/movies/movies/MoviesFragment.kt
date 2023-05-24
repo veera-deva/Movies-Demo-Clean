@@ -11,6 +11,7 @@ import com.demo.common_ui.utils.launchAndRepeatWithLifeCycle
 import com.demo.domain.entity.MovieEntity
 import com.demo.feature.movies.databinding.FragmentMoviesBinding
 import com.demo.feature.movies.moviedetails.MovieDetailData
+import com.demo.feature.movies.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -19,8 +20,8 @@ import kotlinx.coroutines.launch
  */
 @AndroidEntryPoint
 class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding::inflate) {
-    private val moviesViewModel by viewModels<MoviesViewModel>()
 
+    private val moviesViewModel by viewModels<MoviesViewModel>()
     override fun setUpView() {
         subscribeUI()
         setUpRecyclerView()
@@ -31,7 +32,7 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
         binding.rvMovies.apply {
             layoutManager = GridLayoutManager(
                 requireContext(),
-                3,
+                Constants.MOVIE_FRAGMENT_RV_SPAN_COUNT,
                 GridLayoutManager.VERTICAL,
                 false
             )
@@ -61,7 +62,6 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
                         is MoviesUIState.Error -> {
                             loadNoDataView()
                         }
-
                     }
                 }
             }

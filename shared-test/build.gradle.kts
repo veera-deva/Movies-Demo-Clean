@@ -8,10 +8,10 @@ plugins {
 
 android {
     namespace = "com.demo.shared_test"
-    compileSdk = 33
+    compileSdk = deps.AndroidSettings.compileSdk
 
     defaultConfig {
-        minSdk = 24
+        minSdk = deps.AndroidSettings.minSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }

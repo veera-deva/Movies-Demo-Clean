@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.demo.domain.entity.MovieEntity
 import com.demo.domain.model.NetworkResult
 import com.demo.domain.usecase.GetMoviesUseCaseImpl
+import com.demo.feature.movies.utils.TestUtils
 import com.demo.shared_test.MainCoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -42,7 +43,7 @@ class MoviesViewModelTest {
     @Test
     fun `onMoviesViewModel getMovies() returns list of movies`() =
         runTest {
-            val movieList = mockedMovieList()
+            val movieList = TestUtils.mockedMovieList()
             testObject.moviesUiState.test {
                 val firstItem = awaitItem()
                 expectThat(firstItem).isEqualTo(MoviesUIState.Loading)
@@ -74,20 +75,17 @@ class MoviesViewModelTest {
             testObject.moviesUiState.test {
                 val firstItem = awaitItem()
                 expectThat(firstItem).isEqualTo(MoviesUIState.Loading)
-                coEvery { movieUseCase() }.returns(flow { emit(NetworkResult.Failure(Exception("Network Error"))) })
+                coEvery { movieUseCase() }.returns(flow {
+                    emit(
+                        NetworkResult.Failure(
+                            Exception(TestUtils.NETWORK_ERROR_MSG)
+                        )
+                    )
+                })
                 testObject.getMovies()
                 val secondItem = awaitItem()
-                expectThat(secondItem).isEqualTo(MoviesUIState.Error("Network Error"))
+                expectThat(secondItem).isEqualTo(MoviesUIState.Error(TestUtils.NETWORK_ERROR_MSG))
             }
         }
     }
-
-    private fun mockedMovieList() = listOf(
-        MovieEntity(
-            1,
-            "Mock title",
-            "Mock Description",
-            "mockUrl", "mockCategory"
-        )
-    )
 }

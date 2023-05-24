@@ -50,5 +50,4 @@ abstract class BaseFragment<T : ViewBinding>(private val inflateMethod: (LayoutI
      * Hide progress dialog
      * */
     fun hideLoading() = dialog.dismiss()
-
 }

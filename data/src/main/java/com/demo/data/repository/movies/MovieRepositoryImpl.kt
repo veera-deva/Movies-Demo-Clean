@@ -1,10 +1,11 @@
 package com.demo.data.repository.movies
 
+import com.demo.data.di.base.IoDispatcher
 import com.demo.data.mapper.movies.DataMovieResponseToDomainMovieEntityMapper
-import com.demo.domain.model.NetworkResult
 import com.demo.domain.entity.MovieEntity
+import com.demo.domain.model.NetworkResult
 import com.demo.domain.repository.MovieRepository
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -14,6 +15,7 @@ import javax.inject.Inject
  * Repository implementation class for movies API
  * */
 class MovieRepositoryImpl @Inject constructor(
+   @IoDispatcher private val dispatcher: CoroutineDispatcher,
     private val dataSource: MovieDataSource,
     private val movieDataMapper: DataMovieResponseToDomainMovieEntityMapper
 ) : MovieRepository {
@@ -27,7 +29,7 @@ class MovieRepositoryImpl @Inject constructor(
                     is NetworkResult.Error -> NetworkResult.Error(it.code, it.message)
                 }
             })
-        }.flowOn(Dispatchers.IO)
+        }.flowOn(dispatcher)
 
     }
 }

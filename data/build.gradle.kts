@@ -8,7 +8,7 @@ plugins {
 }
 android {
     namespace = "com.demo.data"
-    compileSdk = 33
+    compileSdk = deps.AndroidSettings.compileSdk
 }
 
 dependencies {
