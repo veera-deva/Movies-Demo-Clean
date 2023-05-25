@@ -1,8 +1,10 @@
 package com.demo.data.base
 
+import com.demo.data.utils.Constants
 import com.demo.domain.model.NetworkResult
 import retrofit2.HttpException
 import retrofit2.Response
+import java.net.SocketTimeoutException
 
 object NetworkApiCall {
 
@@ -15,6 +17,8 @@ object NetworkApiCall {
             } else {
                 NetworkResult.Error(code = response.code(), message = response.message())
             }
+        } catch (e: SocketTimeoutException) {
+            NetworkResult.Error(code = 0, message = Constants.NETWORK_ERROR_MESSAGE)
         } catch (e: HttpException) {
             NetworkResult.Error(code = e.code(), message = e.message())
         } catch (e: Throwable) {
