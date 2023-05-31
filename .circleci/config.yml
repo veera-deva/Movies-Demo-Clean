@@ -16,7 +16,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum "feature-movies/build.gradle" }}
+          key: jars-{{ checksum "feature-movies/build.gradle" }}-{{ checksum "feature-movies/build.gradle" }}
       - run:
           name: Chmod permissions # permission for Gradlew Dependencies fail, use this.
           command: sudo chmod +x ./gradlew
@@ -28,7 +28,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum "feature-movies/build.gradle" }}
+          key: jars-{{ checksum "feature-movies/build.gradle" }}-{{ checksum "feature-movies/build.gradle" }}
       - run:
           name: Run tests
           command: ./gradlew lint test
