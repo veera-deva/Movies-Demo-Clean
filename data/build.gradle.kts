@@ -9,6 +9,10 @@ plugins {
 android {
     namespace = "com.demo.data"
     compileSdk = deps.AndroidSettings.compileSdk
+
+    defaultConfig{
+        minSdk = deps.AndroidSettings.minSdk
+    }
 }
 
 dependencies {
