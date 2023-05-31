@@ -51,6 +51,9 @@ android {
         viewBinding = true
         dataBinding = true
     }
+    lint {
+        disable.add("NotificationPermission")
+    }
 }
 
 dependencies {
