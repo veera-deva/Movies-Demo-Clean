@@ -10,6 +10,7 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -20,6 +21,8 @@ class MovieRepositoryImplTest {
 
     private lateinit var moviesRepository: MovieRepository
 
+    private val testDispatcher = UnconfinedTestDispatcher()
+
     @MockK
     lateinit var remoteDataSource: MovieRemoteDataSource
 
@@ -29,7 +32,7 @@ class MovieRepositoryImplTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        moviesRepository = MovieRepositoryImpl(remoteDataSource, mapper)
+        moviesRepository = MovieRepositoryImpl(testDispatcher, remoteDataSource, mapper)
     }
 
     @Test
