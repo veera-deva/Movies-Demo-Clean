@@ -5,4 +5,5 @@ plugins {
     id(deps.Dependencies.Plugins.jetbrainsKotlinAndroid) version "1.8.0" apply false
     id(deps.Dependencies.Plugins.hiltAndroid) version "2.44" apply false
     id(deps.Dependencies.Plugins.navigationSafArgs) version "2.5.3" apply false
+    id("com.movies.ci.plugin")
 }
