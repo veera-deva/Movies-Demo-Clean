@@ -13,6 +13,7 @@ jobs:
       - run:
           name: generate build configuration
           command: |
+            sudo chmod +x gradlew
             ./gradlew generateModuleTestConfig
       - continuation/continue:
           configuration_path: .circleci/generated_config.yml
