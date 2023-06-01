@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: generate build config
+          name: generate build configuration
           command: |
             ./gradlew generateModuleTestConfig
       - continuation/continue:
