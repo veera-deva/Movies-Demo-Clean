@@ -10,3 +10,12 @@ dependencies {
 repositories {
     mavenCentral()
 }
+gradlePlugin {
+    plugins {
+        create("GenerateGradlePlugin") {
+            id = "movies.ci.plugin"
+            implementationClass = "android.plugin.GenerateGradlePlugin"
+        }
+
+    }
+}
