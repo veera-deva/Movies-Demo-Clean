@@ -16,7 +16,7 @@ jobs:
             sudo chmod +x gradlew
             ./gradlew generateModuleTestConfig
       - continuation/continue:
-          configuration_path: ./generated_config.yml
+          configuration_path: .circleci/generated_config.yml
 workflows:
   generate_configuration:
     jobs:
