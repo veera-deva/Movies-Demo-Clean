@@ -7,8 +7,3 @@ plugins {
     id(deps.Dependencies.Plugins.navigationSafArgs) version "2.5.3" apply false
     id("movies.ci.plugin")
 }
-
-/*
-apply {
-    plugin("com.movies.ci.plugin")
-}*/
