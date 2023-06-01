@@ -10,6 +10,10 @@ class GenerateGradlePlugin : Plugin<Project> {
     override fun apply(project: Project) {
         project.tasks.register("generateModuleTestConfig") {
             val raw = project.extensions.getByName("modules") as List<Map<String, String>>
+            raw.forEach {
+                print("Build Src: module names ${it.getValue("name")}")
+            }
+
             val modules = raw.map { data ->
                 Module(name = data["name"] as String, path = data["path"] as String)
             }.filter { it.name.startsWith("library") }
