@@ -16,7 +16,7 @@ class GenerateGradlePlugin : Plugin<Project> {
 
             val modules = raw.map { data ->
                 Module(name = data["name"] as String, path = data["path"] as String)
-            }.filter { it.name.startsWith("library") }
+            }/*.filter { it.name.startsWith("library") }*/
 
             val folder = File(project.projectDir, ".circleci")
             val template = File(folder, "config_template.yml")
