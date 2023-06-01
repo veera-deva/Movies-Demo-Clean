@@ -1,45 +1,25 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/configuration-reference
+setup: true
+
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/configuration-reference/#jobs
+orbs:
+  continuation: circleci/continuation@0.2.0
 jobs:
-  build:
-    working_directory: ~/Movies-Clean-Demo
+  generate_config:
     docker:
-      - image: cimg/android:2023.05
-    environment:
-      JVM_OPTS: -Xmx3200m
-    # Add steps to the job
-    # See: https://circleci.com/docs/configuration-reference/#steps
+      - image: cimg/android:2022.01
     steps:
       - checkout
-      - restore_cache:
-          key: jars-{{ checksum "feature-movies/build.gradle" }}-{{ checksum "feature-movies/build.gradle" }}
       - run:
-          name: Chmod permissions # permission for Gradlew Dependencies fail, use this.
-          command: sudo chmod +x ./gradlew
-      - run:
-          name: Download dependencies
+          name: generate build config
           command: |
-            sudo chmod +x gradlew
-            ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "feature-movies/build.gradle" }}-{{ checksum "feature-movies/build.gradle" }}
-      - run:
-          name: Run tests
-          command: ./gradlew lint test
-      - store_artifacts:
-          path: app/build/reports
-          destination: reports
-      - store_test_results:
-          path: app/build/test-reports
-# Orchestrate jobs using workflows
-# See: https://circleci.com/docs/configuration-reference/#workflows
+            ./gradlew generateModuleTestConfig
+      - continuation/continue:
+          configuration_path: .circleci/generated_config.yml
 workflows:
-  build-test-feature:
+  generate_config:
     jobs:
-      - build
+      - generate_config:
+          filters:
+            tag:
+              only: /^v[0-9]+(\.[0-9]+)*(-.*)?$/
