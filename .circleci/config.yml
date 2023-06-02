@@ -6,8 +6,7 @@ orbs:
   continuation: circleci/continuation@0.4.0
 jobs:
   generate_config:
-    docker:
-      - image: cimg/android:2022.01
+    executor: continuation/default
     steps:
       - checkout
       - run:
