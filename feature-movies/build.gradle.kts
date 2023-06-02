@@ -9,6 +9,7 @@ plugins {
         id(kotlinParcelize)
         id(navigationSafArgs)
     }
+    `jacoco-config`
 }
 
 android {
