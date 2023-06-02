@@ -11,7 +11,7 @@ class GenerateGradlePlugin : Plugin<Project> {
         project.tasks.register("generateModuleTestConfig") {
             val raw = project.extensions.getByName("modules") as List<Map<String, String>>
             raw.forEach {
-                print("Build Src: module names ${it.getValue("name")}")
+                print("GenerateGradlePlugin: module names\n ${it.getValue("name")}")
             }
 
             val modules = raw.map { data ->
@@ -20,10 +20,12 @@ class GenerateGradlePlugin : Plugin<Project> {
 
             val folder = File(project.projectDir, ".circleci")
             val template = File(folder, "config_template.yml")
+            print("GenerateGradlePlugin:: Config_template file read")
             val data = buildString {
                 append(template.readText())
                 modules.forEach { append(project.generateModuleBuildConfiguration(it)) }
             }
+            print("GenerateGradlePlugin-Write data :: $data")
             project.writeBuildConfiguration(data)
         }
     }
@@ -52,6 +54,7 @@ private fun Project.writeBuildConfiguration(configuration: String) {
     val folder = File(project.projectDir, ".circleci")
     val file = File(folder, "generate_config.yml")
     file.writeText(configuration)
+    print("GenerateGradlePlugin - Write text to generate_config completed")
 }
 
 private data class Module(
